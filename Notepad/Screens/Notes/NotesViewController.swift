@@ -27,6 +27,13 @@ class NotesViewController: UIViewController {
 }
 
 extension NotesViewController: NotesViewDelegate {
+    func editNotes(note: Note?) {
+        if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
+            controller.addNotesModel.folder = notesModel.folder
+            controller.addNotesModel.note = note
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
     func addTapped() {
         if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
             controller.addNotesModel.folder = notesModel.folder

@@ -16,6 +16,8 @@ class AddNotesViewController: UIViewController {
 
         addNotesView.delegate = self
         addNotesView.setUpUI()
+        addNotesView.note = addNotesModel.note
+        addNotesView.updateUI()
     }
     
 }

@@ -9,10 +9,22 @@ import Foundation
 
 class AddNotesModel {
     var folder: Folder?
+    var note: Note?
+    var updateNeeded: Bool {
+        if note != nil {
+            return true
+        }
+        return false
+    }
     
     func saveNote(message: String) {
-        CoreDataManager.addNoteToFolder(folder: folder?.name, message: message)
-        refreshNotesData()
+        if updateNeeded {
+            CoreDataManager.updateNote(message: message, id: note?.id ?? "")
+            refreshNotesData()
+        }else {
+            CoreDataManager.addNoteToFolder(folder: folder?.name, message: message)
+            refreshNotesData()
+        }
     }
     func refreshNotesData() {
         var folders: [Folder] = []
@@ -27,6 +39,8 @@ class AddNotesModel {
         for folder in folders {
             allNotes = allNotes + folder.notes
         }
+        allNotes = allNotes + getNotesInFolder(folderName: "Any")
+        
         folders.insert(Folder(name: "All Notes", notes: allNotes, isMain: true), at: 0)
         
         NotesData.shared.folders = folders

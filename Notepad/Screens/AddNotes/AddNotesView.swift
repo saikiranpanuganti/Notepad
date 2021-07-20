@@ -20,15 +20,17 @@ class AddNotesView: UIView {
     
     weak var delegate: AddNotesViewDelegate?
     
-    var date: Date?
-    var message: String = ""
+    var note: Note?
     
     func setUpUI() {
         dateLabel.text = Date().getFormattedDate()
         
     }
     func updateUI() {
-        messageView.text = message
+        if note != nil {
+            messageView.text = note?.message
+            dateLabel.text = note?.date?.getFormattedDate()
+        }
     }
     
     @IBAction func backTapped() {

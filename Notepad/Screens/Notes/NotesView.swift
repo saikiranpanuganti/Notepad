@@ -10,6 +10,7 @@ import UIKit
 protocol NotesViewDelegate: AnyObject {
     func backTapped()
     func addTapped()
+    func editNotes(note: Note?)
 }
 
 class NotesView: UIView {
@@ -40,6 +41,7 @@ class NotesView: UIView {
         
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         tableView.register(UINib(nibName: "NoteTableViewCell", bundle: nil), forCellReuseIdentifier: "NoteTableViewCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -73,6 +75,6 @@ extension NotesView: UITableViewDelegate {
         return 45
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        delegate?.editNotes(note: folder?.notes[indexPath.row])
     }
 }
