@@ -19,9 +19,10 @@ class NoteTableViewCell: UITableViewCell {
     }
     func setUpUI() {
         seperator.backgroundColor = Colors.shared.lightGrey
+        dateLabel.textColor = Colors.shared.searchText
     }
     func configureUI(note: Note?) {
         messageLabel.text = note?.message ?? ""
-        dateLabel.text = note?.date?.getFormattedDate() ?? ""
+        dateLabel.text = note?.date?.convertToDateString(formatType: .DDMMYY) ?? ""
     }
 }

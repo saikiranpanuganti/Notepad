@@ -7,6 +7,26 @@
 
 import Foundation
 
+enum FormatType: String {
+    case HHMMSS = "HH:mm:SS"
+    case HHMM = "HH:mm"
+    case hhmma = "HH:mm a"
+    case YYYYMMDDTHHmmSS = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    case hhmmaEEEMMMdd = "hh:mm a EEE,MMM dd"
+    case ddMMMMYYYYmmSS = "dd MMMM yyyy hh:mm a"
+    case ddMMMYYYYmmSS = "dd MMM yyyy hh:mm a"
+    case ddMMMMYYYY = "dd MMMM yyyy"
+    case YYYYMMDD = "yyyy-MM-dd"
+    case hhmmaddMMYYYY = "hh:mm a, dd-MM-yyyy"
+    case DD_MM_YYYY = "dd-MM-yyyy"
+    case YYYYMMDD_HHmmSSz = "yyyy-MM-dd HH:mm:ss"
+    case MMDDYYYY = "MM/dd/yyyy"
+    case DDMMYYYY = "dd/MM/yyyy"
+    case MMDDYY = "MM/dd/yy"
+    case DDMMYY = "dd/MM/yy"
+    case DDMMMYYYY = "dd MMM, yyyy"
+}
+
 extension Date {
     func getFormattedDate() -> String? {
         let date = self
@@ -29,10 +49,14 @@ extension Date {
             return dateFormatter.string(from: date)
         }
     }
-
     func dateFallsInCurrentWeek(date: Date) -> Bool {
         let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
         let datesWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: date)
         return (currentWeek == datesWeek)
+    }
+    func convertToDateString(formatType: FormatType) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formatType.rawValue
+        return dateFormatter.string(from: self)
     }
 }

@@ -66,6 +66,7 @@ extension NotesView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
             cell.configureUI(note: folder?.notes[indexPath.row])
+            return cell
         }
         return UITableViewCell()
     }
