@@ -34,7 +34,6 @@ class SplashViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             if let controller = Controller.folders.getViewController() as? FoldersViewController {
-                controller.foldersModel.folders = strongSelf.splashModel.folders
                 strongSelf.navigationController?.viewControllers = [controller]
                 strongSelf.navigationController?.popToRootViewController(animated: true)
             }

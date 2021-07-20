@@ -18,7 +18,7 @@ extension Date {
             return "Yesterday"
         }else if dateFallsInCurrentWeek(date: date) {
             if Calendar.current.isDateInToday(date) {
-                dateFormatter.dateFormat = "Today h:mm a"
+                dateFormatter.dateFormat = "hh:mm a"
                 return dateFormatter.string(from: date)
             }else {
                 dateFormatter.dateFormat = "EEEE"

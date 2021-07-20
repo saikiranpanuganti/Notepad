@@ -37,6 +37,8 @@
 		7F76E17826A73A9600D0EEC9 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17726A73A9600D0EEC9 /* Date+Extension.swift */; };
 		7F76E17A26A7430300D0EEC9 /* Folders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17926A7430300D0EEC9 /* Folders.swift */; };
 		7F76E17C26A743B400D0EEC9 /* SplashModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17B26A743B400D0EEC9 /* SplashModel.swift */; };
+		7F76E18026A7630100D0EEC9 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17E26A7630100D0EEC9 /* NoteTableViewCell.swift */; };
+		7F76E18126A7630100D0EEC9 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		7F76E17726A73A9600D0EEC9 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F76E17926A7430300D0EEC9 /* Folders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folders.swift; sourceTree = "<group>"; };
 		7F76E17B26A743B400D0EEC9 /* SplashModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModel.swift; sourceTree = "<group>"; };
+		7F76E17E26A7630100D0EEC9 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +164,7 @@
 				7F76E14B26A6B5BF00D0EEC9 /* FoldersModel.swift */,
 				7F76E14A26A6B5BF00D0EEC9 /* FoldersView.swift */,
 				7F76E14C26A6B5BF00D0EEC9 /* FoldersViewController.swift */,
-				7F76E15026A6B5CA00D0EEC9 /* NotesCell */,
+				7F76E15026A6B5CA00D0EEC9 /* FolderCell */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -171,6 +175,7 @@
 				7F76E15526A6B5E000D0EEC9 /* NotesView.swift */,
 				7F76E15626A6B5E000D0EEC9 /* NotesViewController.swift */,
 				7F76E15726A6B5E000D0EEC9 /* NotesModel.swift */,
+				7F76E17D26A762E400D0EEC9 /* NoteCell */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -185,13 +190,13 @@
 			path = AddNotes;
 			sourceTree = "<group>";
 		};
-		7F76E15026A6B5CA00D0EEC9 /* NotesCell */ = {
+		7F76E15026A6B5CA00D0EEC9 /* FolderCell */ = {
 			isa = PBXGroup;
 			children = (
 				7F76E15126A6B5D700D0EEC9 /* NotesTableViewCell.swift */,
 				7F76E15226A6B5D700D0EEC9 /* NotesTableViewCell.xib */,
 			);
-			path = NotesCell;
+			path = FolderCell;
 			sourceTree = "<group>";
 		};
 		7F76E16826A6D3DD00D0EEC9 /* CoreDataFiles */ = {
@@ -201,6 +206,15 @@
 				7F76E17126A6FC6200D0EEC9 /* CoreDataManager.swift */,
 			);
 			path = CoreDataFiles;
+			sourceTree = "<group>";
+		};
+		7F76E17D26A762E400D0EEC9 /* NoteCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F76E17E26A7630100D0EEC9 /* NoteTableViewCell.swift */,
+				7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */,
+			);
+			path = NoteCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +277,7 @@
 				7F76E12E26A6B3E500D0EEC9 /* LaunchScreen.storyboard in Resources */,
 				7F76E12B26A6B3E500D0EEC9 /* Assets.xcassets in Resources */,
 				7F76E12626A6B3E300D0EEC9 /* Main.storyboard in Resources */,
+				7F76E18126A7630100D0EEC9 /* NoteTableViewCell.xib in Resources */,
 				7F76E15426A6B5D700D0EEC9 /* NotesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +303,7 @@
 				7F76E17226A6FC6200D0EEC9 /* CoreDataManager.swift in Sources */,
 				7F76E15326A6B5D700D0EEC9 /* NotesTableViewCell.swift in Sources */,
 				7F76E11F26A6B3E300D0EEC9 /* AppDelegate.swift in Sources */,
+				7F76E18026A7630100D0EEC9 /* NoteTableViewCell.swift in Sources */,
 				7F76E17526A705A900D0EEC9 /* Note+CoreDataClass.swift in Sources */,
 				7F76E14E26A6B5BF00D0EEC9 /* FoldersModel.swift in Sources */,
 				7F76E16126A6B5F200D0EEC9 /* AddNotesView.swift in Sources */,

@@ -11,26 +11,28 @@ protocol AddNotesViewDelegate: AnyObject {
     func backTapped()
     func deleteTapped()
     func shareTapped()
-    func saveNote()
+    func saveNote(message: String)
 }
 
 class AddNotesView: UIView {
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageView: UITextView!
     
     weak var delegate: AddNotesViewDelegate?
     
+    var date: Date?
     var message: String = ""
     
     func setUpUI() {
-        date.text = Date().getFormattedDate()
+        dateLabel.text = Date().getFormattedDate()
+        
     }
     func updateUI() {
         messageView.text = message
     }
     
     @IBAction func backTapped() {
-//        delegate?.saveNote()
+        delegate?.saveNote(message: messageView.text)
         delegate?.backTapped()
     }
     @IBAction func deleteTapped() {

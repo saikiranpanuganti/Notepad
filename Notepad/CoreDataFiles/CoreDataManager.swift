@@ -23,7 +23,6 @@ class CoreDataManager {
         
         do {
             if let notes = try context.fetch(fetchRequest) as? [Note] {
-                print(notes)
                 return notes
             }
         }catch {
@@ -41,7 +40,6 @@ class CoreDataManager {
         
         do {
             if let notes = try context.fetch(fetchRequest) as? [Note] {
-                print(notes)
                 return notes
             }
         }catch {
@@ -50,7 +48,7 @@ class CoreDataManager {
         return nil
     }
     
-    static func addNoteToFolder(folder: String? = nil, message: String) {
+    static func addNoteToFolder(folder: String?, message: String) {
         guard let context = getContext() else { return }
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {return}

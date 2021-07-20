@@ -21,8 +21,10 @@ class AddNotesViewController: UIViewController {
 }
 
 extension AddNotesViewController: AddNotesViewDelegate {
-    func saveNote() {
-        
+    func saveNote(message: String) {
+        if message.replacingOccurrences(of: " ", with: "") != "" {
+            addNotesModel.saveNote(message: message)
+        }
     }
     func backTapped() {
         navigationController?.popViewController(animated: true)

@@ -18,6 +18,11 @@ class FoldersViewController: UIViewController {
         foldersView.folders = foldersModel.folders
         foldersView.updateUI()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        foldersView.folders = foldersModel.folders
+        foldersView.updateUI()
+    }
     func createFolder(folderName: String) {
         foldersModel.createNewFolder(folderName: folderName)
         foldersView.folders = foldersModel.folders
@@ -53,7 +58,7 @@ extension FoldersViewController: FoldersViewDelegate {
     }
     func folderTapped(folder: Folder) {
         if let controller = Controller.notes.getViewController() as? NotesViewController {
-            controller.notesModel.folder = folder
+            controller.notesModel.folderName = folder.name
             navigationController?.pushViewController(controller, animated: true)
         }
     }

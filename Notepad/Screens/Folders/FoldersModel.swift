@@ -8,7 +8,9 @@
 import Foundation
 
 class FoldersModel {
-    var folders: [Folder] = []
+    var folders: [Folder] {
+        return NotesData.shared.folders
+    }
     
     func createNewFolder(folderName: String) {
         if var folderNames = UserDefaults.standard.value(forKey: "folders") as? [String] {
@@ -17,6 +19,6 @@ class FoldersModel {
         }else {
             UserDefaults.standard.setValue([folderName], forKey: "folders")
         }
-        folders.append(Folder(name: folderName, notes: [], isMain: false))
+        NotesData.shared.folders.append(Folder(name: folderName, notes: [], isMain: false))
     }
 }

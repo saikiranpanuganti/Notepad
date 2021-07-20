@@ -22,7 +22,11 @@ class SplashModel {
         for folder in folders {
             allNotes = allNotes + folder.notes
         }
+        allNotes = allNotes + getNotesInFolder(folderName: "Any")
+        
         folders.insert(Folder(name: "All Notes", notes: allNotes, isMain: true), at: 0)
+        
+        NotesData.shared.folders = folders
     }
     
     func getNotesInFolder(folderName: String) -> [Note] {

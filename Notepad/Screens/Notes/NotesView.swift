@@ -39,9 +39,13 @@ class NotesView: UIView {
         addView.layer.cornerRadius = 30
         
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
-        
+        tableView.register(UINib(nibName: "NoteTableViewCell", bundle: nil), forCellReuseIdentifier: "NoteTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func updateUI() {
+        tableView.reloadData()
     }
     
     @IBAction func backTapped() {
@@ -55,14 +59,20 @@ class NotesView: UIView {
 
 extension NotesView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return folder?.notes.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
+            cell.configureUI(note: folder?.notes[indexPath.row])
+        }
         return UITableViewCell()
     }
 }
 extension NotesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0
+        return 45
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
