@@ -76,6 +76,9 @@
                                             <color key="titleShadowColor" name="AccentColor"/>
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="large" renderingMode="template"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addFolderTapped" destination="22g-HH-6gm" eventType="touchUpInside" id="LJ3-3L-0Vc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,7 +149,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-dv-mQ9">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <connections>
-                                            <action selector="addTapped:" destination="22g-HH-6gm" eventType="touchUpInside" id="Coc-AW-Stf"/>
+                                            <action selector="addNotesTapped:" destination="22g-HH-6gm" eventType="touchUpInside" id="uuG-5t-uZp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -382,6 +385,7 @@
                             <outlet property="searchTextField" destination="3kq-lf-AmY" id="sQt-32-oJh"/>
                             <outlet property="searchView" destination="tha-0c-Zz3" id="S5C-mC-5OK"/>
                             <outlet property="tableView" destination="KcI-Ym-FHf" id="uU1-XA-NUo"/>
+                            <outlet property="title" destination="2MD-9g-dNU" id="Qbc-lP-ZTU"/>
                         </connections>
                     </view>
                     <connections>
@@ -515,6 +519,10 @@
                             <constraint firstItem="JcS-VK-FC1" firstAttribute="top" secondItem="6YQ-BS-CiB" secondAttribute="bottom" id="gRn-DJ-Tre"/>
                             <constraint firstItem="7oa-wQ-fzC" firstAttribute="width" secondItem="ZDc-Q2-MPS" secondAttribute="width" id="gtr-9r-Dxx"/>
                         </constraints>
+                        <connections>
+                            <outlet property="date" destination="UoM-eM-drr" id="Gqe-Yv-Rbe"/>
+                            <outlet property="messageView" destination="j7w-EE-yHd" id="sei-Pt-2jL"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="addNotesView" destination="ZDc-Q2-MPS" id="zQv-X0-Jh3"/>

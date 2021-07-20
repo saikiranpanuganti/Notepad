@@ -8,8 +8,9 @@
 import UIKit
 
 protocol FoldersViewDelegate: AnyObject {
-    func folderTapped()
-    func addTapped()
+    func folderTapped(folder: Folder)
+    func addNotesTapped()
+    func addFolderTapped()
 }
 
 class FoldersView: UIView {
@@ -22,6 +23,8 @@ class FoldersView: UIView {
     @IBOutlet weak var addView: UIView!
     
     weak var delegate: FoldersViewDelegate?
+    
+    var folders: [Folder] = []
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -40,27 +43,26 @@ class FoldersView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    func updateUI() {
+        tableView.reloadData()
+    }
     
-    @IBAction func addTapped(_ sender: UIButton) {
-        delegate?.addTapped()
+    @IBAction func addFolderTapped() {
+        delegate?.addFolderTapped()
+    }
+    @IBAction func addNotesTapped(_ sender: UIButton) {
+        delegate?.addNotesTapped()
     }
 }
 
 extension FoldersView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return folders.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-                cell.configureUI(mainCell: true, folder: "All Notes", notesCount: 1)
-                return cell
-            }
-        }else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-                cell.configureUI(mainCell: false, folder: "New 1", notesCount: 0)
-                return cell
-            }
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
+            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count)
+            return cell
         }
         return UITableViewCell()
     }
@@ -70,6 +72,6 @@ extension FoldersView: UITableViewDelegate {
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.folderTapped()
+        delegate?.folderTapped(folder: folders[indexPath.row])
     }
 }

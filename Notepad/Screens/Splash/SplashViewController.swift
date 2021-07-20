@@ -8,14 +8,15 @@
 import UIKit
 
 class SplashViewController: UIViewController {
+    var splashModel: SplashModel = SplashModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        splashModel.getFolders()
         loadFoldersView()
     }
     
@@ -30,10 +31,13 @@ class SplashViewController: UIViewController {
     }
     
     func loadFoldersView() {
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            let controller = Controller.folders.getViewController()
-            self.navigationController?.viewControllers = [controller]
-            self.navigationController?.popToRootViewController(animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            if let controller = Controller.folders.getViewController() as? FoldersViewController {
+                controller.foldersModel.folders = strongSelf.splashModel.folders
+                strongSelf.navigationController?.viewControllers = [controller]
+                strongSelf.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
 }

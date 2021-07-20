@@ -20,13 +20,18 @@ class NotesView: UIView {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addView: UIView!
+    @IBOutlet weak var title: UILabel!
     
     weak var delegate: NotesViewDelegate?
+    
+    var folder: Folder?
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
         searchScope.image = Images.shared.scope
         searchView.layer.cornerRadius = 10.0
+        
+        title.text = folder?.name ?? ""
         
         let redPlaceholderText = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: Colors.shared.searchText])
         searchTextField.attributedPlaceholder = redPlaceholderText

@@ -9,17 +9,21 @@ import UIKit
 
 class AddNotesViewController: UIViewController {
     @IBOutlet weak var addNotesView: AddNotesView!
-    var viewModel: AddNotesViewModel = AddNotesViewModel()
+    var addNotesModel: AddNotesModel = AddNotesModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addNotesView.delegate = self
+        addNotesView.setUpUI()
     }
     
 }
 
 extension AddNotesViewController: AddNotesViewDelegate {
+    func saveNote() {
+        
+    }
     func backTapped() {
         navigationController?.popViewController(animated: true)
     }

@@ -9,11 +9,12 @@ import UIKit
 
 class NotesViewController: UIViewController {
     @IBOutlet weak var notesView: NotesView!
-    var viewModel: NotesViewModel = NotesViewModel()
+    var notesModel: NotesModel = NotesModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         notesView.delegate = self
+        notesView.folder = notesModel.folder
         notesView.setUpUI()
     }
 }
