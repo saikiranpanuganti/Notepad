@@ -24,13 +24,17 @@ class AddNotesView: UIView {
     
     func setUpUI() {
         dateLabel.text = Date().getFormattedDate()
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.addGestureRecognizer(tap)
     }
     func updateUI() {
         if note != nil {
             messageView.text = note?.message
             dateLabel.text = note?.date?.getFormattedDate()
         }
+    }
+    @objc func handleTap() {
+        messageView.resignFirstResponder()
     }
     
     @IBAction func backTapped() {

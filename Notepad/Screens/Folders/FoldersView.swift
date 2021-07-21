@@ -33,6 +33,7 @@ class FoldersView: UIView {
         
         let redPlaceholderText = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: Colors.shared.searchText])
         searchTextField.attributedPlaceholder = redPlaceholderText
+        searchTextField.delegate = self
         
         addView.layer.cornerRadius = 30
         
@@ -73,5 +74,11 @@ extension FoldersView: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.folderTapped(folder: folders[indexPath.row])
+    }
+}
+extension FoldersView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
