@@ -59,4 +59,10 @@ extension Date {
         dateFormatter.dateFormat = formatType.rawValue
         return dateFormatter.string(from: self)
     }
+    func convertToLongString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
 }

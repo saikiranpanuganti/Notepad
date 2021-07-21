@@ -24,6 +24,7 @@ class NotesView: UIView {
     @IBOutlet weak var title: UILabel!
     
     weak var delegate: NotesViewDelegate?
+    var isEditingMode: Bool = false
     
     var folder: Folder?
     
@@ -55,9 +56,12 @@ class NotesView: UIView {
         searchTextField.resignFirstResponder()
         delegate?.backTapped()
     }
-    
     @IBAction func addTapped(_ sender: UIButton) {
         delegate?.addTapped()
+    }
+    @IBAction func editTapped(_ sender: UIButton) {
+        isEditingMode = !isEditingMode
+        updateUI()
     }
 }
 
@@ -67,7 +71,7 @@ extension NotesView: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
-            cell.configureUI(note: folder?.notes[indexPath.row])
+            cell.configureUI(note: folder?.notes[indexPath.row], isEditingMode: isEditingMode)
             return cell
         }
         return UITableViewCell()

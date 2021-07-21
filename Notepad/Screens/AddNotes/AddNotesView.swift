@@ -17,13 +17,15 @@ protocol AddNotesViewDelegate: AnyObject {
 class AddNotesView: UIView {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageView: UITextView!
+    @IBOutlet weak var navBarHeightConstraint: NSLayoutConstraint!
     
     weak var delegate: AddNotesViewDelegate?
     
     var note: Note?
     
     func setUpUI() {
-        dateLabel.text = Date().getFormattedDate()
+        navBarHeightConstraint.constant = topSafeAreaHeight + 40
+        dateLabel.text = Date().convertToLongString()
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.addGestureRecognizer(tap)
         
@@ -36,7 +38,7 @@ class AddNotesView: UIView {
     func updateUI() {
         if note != nil {
             messageView.text = note?.message
-            dateLabel.text = note?.date?.getFormattedDate()
+            dateLabel.text = note?.date?.convertToLongString()
         }
     }
     @objc func handleTap() {
