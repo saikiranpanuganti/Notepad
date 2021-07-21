@@ -26,6 +26,12 @@ class AddNotesView: UIView {
         dateLabel.text = Date().getFormattedDate()
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.addGestureRecognizer(tap)
+        
+        messageView.becomeFirstResponder()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     func updateUI() {
         if note != nil {
@@ -36,8 +42,25 @@ class AddNotesView: UIView {
     @objc func handleTap() {
         messageView.resignFirstResponder()
     }
-    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = self.convert(keyboardScreenEndFrame, from: self.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            messageView.contentInset = .zero
+        } else {
+            messageView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - self.safeAreaInsets.bottom, right: 0)
+        }
+
+        messageView.scrollIndicatorInsets = messageView.contentInset
+
+        let selectedRange = messageView.selectedRange
+        messageView.scrollRangeToVisible(selectedRange)
+    }
     @IBAction func backTapped() {
+        messageView.resignFirstResponder()
         delegate?.saveNote(message: messageView.text)
         delegate?.backTapped()
     }

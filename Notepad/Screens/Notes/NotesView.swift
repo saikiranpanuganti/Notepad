@@ -52,6 +52,7 @@ class NotesView: UIView {
     }
     
     @IBAction func backTapped() {
+        searchTextField.resignFirstResponder()
         delegate?.backTapped()
     }
     

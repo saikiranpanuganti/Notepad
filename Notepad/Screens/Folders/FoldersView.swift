@@ -49,9 +49,11 @@ class FoldersView: UIView {
     }
     
     @IBAction func addFolderTapped() {
+        searchTextField.resignFirstResponder()
         delegate?.addFolderTapped()
     }
     @IBAction func addNotesTapped(_ sender: UIButton) {
+        searchTextField.resignFirstResponder()
         delegate?.addNotesTapped()
     }
 }
@@ -73,6 +75,7 @@ extension FoldersView: UITableViewDelegate {
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchTextField.resignFirstResponder()
         delegate?.folderTapped(folder: folders[indexPath.row])
     }
 }
