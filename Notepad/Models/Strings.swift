@@ -16,5 +16,6 @@ class Strings {
     let folders = "Folders"
     let back = "Back"
     let edit = "Edit"
+    let delete = "Delete"
     
 }

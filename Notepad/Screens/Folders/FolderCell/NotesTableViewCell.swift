@@ -12,13 +12,33 @@ class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var folderName: UILabel!
     @IBOutlet weak var numberOfNotes: UILabel!
     @IBOutlet weak var seperator: UIView!
+    @IBOutlet weak var deleteView: UIView!
+    @IBOutlet weak var deleteImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpUI()
     }
     func setUpUI() {
+        deleteView.isHidden = true
+        deleteImage.tintColor = Colors.shared.redColor
         seperator.backgroundColor = Colors.shared.lightGrey
+        numberOfNotes.layer.cornerRadius = 10.0
+        numberOfNotes.layer.borderWidth = 2.0
+        numberOfNotes.layer.borderColor = Colors.shared.notesCount.cgColor
+    }
+    func toggleDeleteButton(isEditingMode: Bool) {
+        DispatchQueue.main.async {
+            if isEditingMode {
+                UIView.animate(withDuration: 0.2) {
+                    self.deleteView.isHidden = false
+                }
+            }else {
+                UIView.animate(withDuration: 0.2) {
+                    self.deleteView.isHidden = true
+                }
+            }
+        }
     }
     func configureUI(mainCell: Bool, folder: String, notesCount: Int) {
         if mainCell {
@@ -32,5 +52,8 @@ class NotesTableViewCell: UITableViewCell {
         }
         folderName.text = folder
         numberOfNotes.text = String(notesCount)
+    }
+    @IBAction func deleteTapped(_ sender: UIButton) {
+        
     }
 }

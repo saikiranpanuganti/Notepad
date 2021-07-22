@@ -27,7 +27,13 @@ class NotesViewController: UIViewController {
 }
 
 extension NotesViewController: NotesViewDelegate {
-    func editNotes(note: Note?) {
+    func delete(note: Note?) {
+        notesModel.deleteNote(note: note)
+        notesView.folder = notesModel.folder
+        notesView.updateUI()
+        
+    }
+    func updateNote(note: Note?) {
         if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
             controller.addNotesModel.folder = notesModel.folder
             controller.addNotesModel.note = note

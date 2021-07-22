@@ -25,6 +25,7 @@ class FoldersView: UIView {
     weak var delegate: FoldersViewDelegate?
     
     var folders: [Folder] = []
+    var isEditingMode: Bool = false
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -56,6 +57,10 @@ class FoldersView: UIView {
         searchTextField.resignFirstResponder()
         delegate?.addNotesTapped()
     }
+    @IBAction func editTapped(_ sender: UIButton) {
+        isEditingMode = !isEditingMode
+        tableView.reloadData()
+    }
 }
 
 extension FoldersView: UITableViewDataSource {
@@ -64,6 +69,7 @@ extension FoldersView: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
+            cell.toggleDeleteButton(isEditingMode: isEditingMode)
             cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count)
             return cell
         }
@@ -75,8 +81,10 @@ extension FoldersView: UITableViewDelegate {
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchTextField.resignFirstResponder()
-        delegate?.folderTapped(folder: folders[indexPath.row])
+        if !isEditingMode {
+            searchTextField.resignFirstResponder()
+            delegate?.folderTapped(folder: folders[indexPath.row])
+        }
     }
 }
 extension FoldersView: UITextFieldDelegate {

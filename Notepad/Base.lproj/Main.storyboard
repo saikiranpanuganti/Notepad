@@ -47,7 +47,7 @@
                                             <imageReference key="image" image="gearshape" catalog="system" symbolScale="large" renderingMode="template"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-PJ-vAE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-PJ-vAE">
                                         <rect key="frame" x="170" y="52.5" width="74.5" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,6 +63,9 @@
                                         <state key="normal" title="Edit">
                                             <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="editTapped:" destination="22g-HH-6gm" eventType="touchUpInside" id="XZz-qI-PZ1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8N-MB-rCs">
                                         <rect key="frame" x="369" y="48" width="35" height="35"/>
@@ -237,29 +240,36 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-QD-ueF">
-                                        <rect key="frame" x="353" y="50.5" width="46" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="odB-J1-I0u">
+                                        <rect key="frame" x="354" y="45.5" width="45" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-QD-ueF">
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="45" id="loi-TO-6Cx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <state key="normal" title="Edit">
+                                                    <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="editTapped:" destination="KO2-ds-qdX" eventType="touchUpInside" id="F7o-48-v3R"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="P1w-xl-JTQ"/>
-                                            <constraint firstAttribute="height" constant="30" id="tev-I9-ctl"/>
+                                            <constraint firstAttribute="height" constant="40" id="Aij-4c-mHv"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                        <state key="normal" title="Edit">
-                                            <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editTapped:" destination="KO2-ds-qdX" eventType="touchUpInside" id="F7o-48-v3R"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="2MD-9g-dNU" firstAttribute="centerX" secondItem="f1D-qv-sLT" secondAttribute="centerX" id="CFD-IV-Cqu"/>
-                                    <constraint firstAttribute="trailing" secondItem="wOf-QD-ueF" secondAttribute="trailing" constant="15" id="DMu-Nz-61N"/>
+                                    <constraint firstAttribute="trailing" secondItem="odB-J1-I0u" secondAttribute="trailing" constant="15" id="Ni9-N1-Udn"/>
                                     <constraint firstItem="2MD-9g-dNU" firstAttribute="centerY" secondItem="RzX-Zq-Jpp" secondAttribute="centerY" id="TbF-fZ-9Z2"/>
                                     <constraint firstAttribute="height" constant="88" id="U87-Gx-jRS"/>
                                     <constraint firstItem="RzX-Zq-Jpp" firstAttribute="leading" secondItem="f1D-qv-sLT" secondAttribute="leading" constant="10" id="X8r-us-JOQ"/>
-                                    <constraint firstItem="wOf-QD-ueF" firstAttribute="centerY" secondItem="RzX-Zq-Jpp" secondAttribute="centerY" id="d8n-JB-jp1"/>
+                                    <constraint firstItem="odB-J1-I0u" firstAttribute="centerY" secondItem="2MD-9g-dNU" secondAttribute="centerY" id="hwP-O0-Evk"/>
                                     <constraint firstAttribute="bottom" secondItem="RzX-Zq-Jpp" secondAttribute="bottom" constant="5" id="np9-6A-SG8"/>
                                 </constraints>
                             </view>

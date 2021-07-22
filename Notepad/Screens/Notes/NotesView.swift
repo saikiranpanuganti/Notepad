@@ -10,7 +10,8 @@ import UIKit
 protocol NotesViewDelegate: AnyObject {
     func backTapped()
     func addTapped()
-    func editNotes(note: Note?)
+    func updateNote(note: Note?)
+    func delete(note: Note?)
 }
 
 class NotesView: UIView {
@@ -71,7 +72,9 @@ extension NotesView: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
-            cell.configureUI(note: folder?.notes[indexPath.row], isEditingMode: isEditingMode)
+            cell.delegate = self
+            cell.toggleDeleteButton(isEditingMode: isEditingMode)
+            cell.configureUI(note: folder?.notes[indexPath.row])
             return cell
         }
         return UITableViewCell()
@@ -82,12 +85,20 @@ extension NotesView: UITableViewDelegate {
         return 45
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.editNotes(note: folder?.notes[indexPath.row])
+        if !isEditingMode {
+            searchTextField.resignFirstResponder()
+            delegate?.updateNote(note: folder?.notes[indexPath.row])
+        }
     }
 }
 extension NotesView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+extension NotesView: NoteTableViewCellDelegate {
+    func deleteTapped(note: Note?) {
+        delegate?.delete(note: note)
     }
 }
