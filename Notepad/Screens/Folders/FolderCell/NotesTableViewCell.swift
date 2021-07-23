@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NotesTableViewCellDelegate: AnyObject {
+    
+}
+
 class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var folderImage: UIImageView!
@@ -18,8 +22,11 @@ class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonStackWidth: NSLayoutConstraint!
     @IBOutlet weak var stackLeadingConstraint: NSLayoutConstraint!
     
+    weak var delegate: NotesTableViewCellDelegate?
     var swipeRight: Bool = true
     var menuPanelCollapsed: Bool = true
+    var isEditOn: Bool = false
+    var postedNotification: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +34,7 @@ class NotesTableViewCell: UITableViewCell {
         addPanGesture()
         buttonStackWidth.constant = 0
         stackLeadingConstraint.constant = 30
+        NotificationCenter.default.addObserver(self, selector:#selector(editingNotification(_:)), name: NSNotification.Name("EditInfoNotification"), object: nil)
     }
     func setUpUI() {
         seperator.backgroundColor = Colors.shared.lightGrey
@@ -38,7 +46,7 @@ class NotesTableViewCell: UITableViewCell {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
         topView.addGestureRecognizer(panGesture)
     }
-    func configureUI(mainCell: Bool, folder: String, notesCount: Int) {
+    func configureUI(mainCell: Bool, folder: String, notesCount: Int, indexPath: IndexPath) {
         if mainCell {
             folderImage.tintColor = Colors.shared.redColor
             folderName.textColor = Colors.shared.redColor
@@ -51,14 +59,29 @@ class NotesTableViewCell: UITableViewCell {
         folderName.text = folder
         numberOfNotes.text = String(notesCount)
     }
+    func postEditInfoNotification() {
+        postedNotification = true
+        NotificationCenter.default.post(name: NSNotification.Name("EditInfoNotification"), object: nil, userInfo: nil)
+    }
     @IBAction func deleteTapped(_ sender: UIButton) {
-        
+        print("delete tapped")
+    }
+    @IBAction func pingTapped(_ sender: UIButton) {
+        print("pingTapped tapped")
+    }
+    @objc func editingNotification(_ notification: Notification){
+        if isEditOn && !postedNotification {
+            hideStack(duration: 0.3)
+        }
+        postedNotification = false
     }
     @objc func panGesture(_ sender : UIPanGestureRecognizer) {
         let piece = sender.view
         let translation = sender.translation(in: piece?.superview)
         let velocity = sender.velocity(in: piece?.superview)
-        if sender.state == .changed {
+        if sender.state == .began{
+            postEditInfoNotification()
+        }else if sender.state == .changed {
             if velocity.x > 0 {
                 swipeRight = true
                 if stackLeadingConstraint.constant >= 30 {
@@ -82,10 +105,12 @@ class NotesTableViewCell: UITableViewCell {
                 let stackWidth = self.buttonStackWidth.constant
                 let duration: Double = 0.4*Double(stackWidth)/120
                 hideStack(duration: duration)
+                isEditOn = false
             }else {
                 let stackWidth = 120 - self.buttonStackWidth.constant
                 let duration: Double = 0.4*Double(stackWidth)/120
                 unHideStack(duration: duration)
+                isEditOn = true
             }
         }
     }

@@ -23,6 +23,8 @@ class FoldersView: UIView {
     @IBOutlet weak var addView: UIView!
     
     weak var delegate: FoldersViewDelegate?
+    var isEditing: Bool = false
+    var editingIndexPath: IndexPath?
     
     var folders: [Folder] = []
     
@@ -64,7 +66,8 @@ extension FoldersView: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count)
+            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count, indexPath: indexPath)
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -84,4 +87,7 @@ extension FoldersView: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+extension FoldersView: NotesTableViewCellDelegate {
+    
 }

@@ -74,12 +74,15 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1y-tV-zlT">
                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="90"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <color key="tintColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal">
                                                     <color key="titleColor" systemColor="systemBlueColor"/>
-                                                    <imageReference key="image" image="folder.fill" catalog="system" symbolScale="large"/>
+                                                    <imageReference key="image" image="pin.fill" catalog="system" symbolScale="large"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pingTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="664-dD-r1Q"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sv-at-ubt">
                                                 <rect key="frame" x="49" y="0.0" width="49" height="90"/>
@@ -88,6 +91,9 @@
                                                 <state key="normal">
                                                     <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q7i-Y4-BAZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -140,10 +146,13 @@
     </objects>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
-        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="pin.fill" catalog="system" width="119" height="128"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
