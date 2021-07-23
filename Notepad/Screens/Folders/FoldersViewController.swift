@@ -62,4 +62,10 @@ extension FoldersViewController: FoldersViewDelegate {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
+    func deleteFolder(folder: String?) {
+        print("FoldersViewController deleteTapped")
+        foldersModel.deleteFolder(folder: folder)
+        foldersView.folders = foldersModel.folders
+        foldersView.updateUI()
+    }
 }

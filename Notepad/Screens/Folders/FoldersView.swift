@@ -11,6 +11,7 @@ protocol FoldersViewDelegate: AnyObject {
     func folderTapped(folder: Folder)
     func addNotesTapped()
     func addFolderTapped()
+    func deleteFolder(folder: String?)
 }
 
 class FoldersView: UIView {
@@ -89,5 +90,12 @@ extension FoldersView: UITextFieldDelegate {
     }
 }
 extension FoldersView: NotesTableViewCellDelegate {
+    func deleteTapped(folder: String?) {
+        print("FoldesView deleteTapped")
+        delegate?.deleteFolder(folder: folder)
+    }
     
+    func pingTapped(folder: String?) {
+        
+    }
 }

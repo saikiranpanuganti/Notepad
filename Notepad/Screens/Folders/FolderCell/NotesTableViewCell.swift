@@ -8,7 +8,8 @@
 import UIKit
 
 protocol NotesTableViewCellDelegate: AnyObject {
-    
+    func deleteTapped(folder: String?)
+    func pingTapped(folder: String?)
 }
 
 class NotesTableViewCell: UITableViewCell {
@@ -27,6 +28,7 @@ class NotesTableViewCell: UITableViewCell {
     var menuPanelCollapsed: Bool = true
     var isEditOn: Bool = false
     var postedNotification: Bool = false
+    var folder: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,6 +60,7 @@ class NotesTableViewCell: UITableViewCell {
         }
         folderName.text = folder
         numberOfNotes.text = String(notesCount)
+        self.folder = folder
     }
     func postEditInfoNotification() {
         postedNotification = true
@@ -65,9 +68,12 @@ class NotesTableViewCell: UITableViewCell {
     }
     @IBAction func deleteTapped(_ sender: UIButton) {
         print("delete tapped")
+        delegate?.deleteTapped(folder: folder)
+        hideStack(duration: 0.3)
     }
     @IBAction func pingTapped(_ sender: UIButton) {
         print("pingTapped tapped")
+        delegate?.pingTapped(folder: folder)
     }
     @objc func editingNotification(_ notification: Notification){
         if isEditOn && !postedNotification {
@@ -114,7 +120,6 @@ class NotesTableViewCell: UITableViewCell {
             }
         }
     }
-    
     func hideStack(duration: Double) {
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             self.buttonStackWidth.constant = 0
