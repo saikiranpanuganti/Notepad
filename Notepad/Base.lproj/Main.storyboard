@@ -53,20 +53,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3P-Bv-tME">
-                                        <rect key="frame" x="308" y="50.5" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="azK-O6-3sD"/>
-                                            <constraint firstAttribute="height" constant="30" id="p4A-Sd-Aty"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                        <state key="normal" title="Edit">
-                                            <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editTapped:" destination="22g-HH-6gm" eventType="touchUpInside" id="XZz-qI-PZ1"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8N-MB-rCs">
                                         <rect key="frame" x="369" y="48" width="35" height="35"/>
                                         <constraints>
@@ -90,9 +76,7 @@
                                     <constraint firstItem="F8N-MB-rCs" firstAttribute="centerY" secondItem="db5-I1-DVm" secondAttribute="centerY" id="SHx-Qe-5NS"/>
                                     <constraint firstItem="db5-I1-DVm" firstAttribute="leading" secondItem="gxB-o4-Am5" secondAttribute="leading" constant="10" id="Wyl-2s-HGd"/>
                                     <constraint firstItem="dEP-PJ-vAE" firstAttribute="centerY" secondItem="db5-I1-DVm" secondAttribute="centerY" id="XKc-Wb-ym7"/>
-                                    <constraint firstItem="F8N-MB-rCs" firstAttribute="leading" secondItem="d3P-Bv-tME" secondAttribute="trailing" constant="15" id="fAJ-pH-Bls"/>
                                     <constraint firstItem="dEP-PJ-vAE" firstAttribute="centerX" secondItem="gxB-o4-Am5" secondAttribute="centerX" id="gpV-Sw-KVI"/>
-                                    <constraint firstItem="d3P-Bv-tME" firstAttribute="centerY" secondItem="db5-I1-DVm" secondAttribute="centerY" id="iZJ-R3-EOF"/>
                                     <constraint firstAttribute="height" constant="88" id="spc-sm-PLV"/>
                                 </constraints>
                             </view>

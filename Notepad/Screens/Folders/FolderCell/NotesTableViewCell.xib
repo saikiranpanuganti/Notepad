@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="472" height="91"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9ys-G4-ya5">
-                                <rect key="frame" x="30" y="5" width="432" height="81"/>
+                                <rect key="frame" x="30" y="0.0" width="432" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-G8-Rqf">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="81"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="90"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archivebox" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="68E-Yv-46E">
-                                                <rect key="frame" x="0.0" y="26.5" width="30" height="27.5"/>
+                                                <rect key="frame" x="0.0" y="31" width="30" height="27.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="68E-Yv-46E" secondAttribute="height" multiplier="1:1" id="v51-JI-7Xj"/>
                                                 </constraints>
@@ -42,16 +43,16 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAj-AK-Oqc">
-                                        <rect key="frame" x="40" y="0.0" width="327" height="81"/>
+                                        <rect key="frame" x="40" y="0.0" width="249" height="90"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nem-dl-34g">
-                                        <rect key="frame" x="377" y="0.0" width="25" height="81"/>
+                                        <rect key="frame" x="299" y="0.0" width="25" height="90"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yny-pM-S4u">
-                                                <rect key="frame" x="0.0" y="28" width="25" height="25"/>
+                                                <rect key="frame" x="0.0" y="32.5" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="yny-pM-S4u" secondAttribute="height" multiplier="1:1" id="yQh-34-dcm"/>
                                                 </constraints>
@@ -68,40 +69,35 @@
                                             <constraint firstItem="yny-pM-S4u" firstAttribute="width" secondItem="Nem-dl-34g" secondAttribute="width" id="y9N-hQ-qLa"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyl-dQ-lwh">
-                                        <rect key="frame" x="412" y="0.0" width="20" height="81"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y79-29-5dr">
+                                        <rect key="frame" x="334" y="0.0" width="98" height="90"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CcX-Gv-YEw">
-                                                <rect key="frame" x="0.0" y="31" width="20" height="19"/>
-                                                <color key="tintColor" red="0.27450980392156865" green="0.27058823529411763" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="CcX-Gv-YEw" secondAttribute="height" multiplier="1:1" id="EcB-Kt-oCJ"/>
-                                                </constraints>
-                                                <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRd-IN-G6J">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="81"/>
-                                                <connections>
-                                                    <action selector="deleteTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gkS-zI-Rjh"/>
-                                                </connections>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1y-tV-zlT">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="90"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <color key="tintColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                                    <imageReference key="image" image="folder.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sv-at-ubt">
+                                                <rect key="frame" x="49" y="0.0" width="49" height="90"/>
+                                                <color key="backgroundColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
+                                                </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="gRd-IN-G6J" firstAttribute="centerY" secondItem="wyl-dQ-lwh" secondAttribute="centerY" id="5qI-Bi-RoH"/>
-                                            <constraint firstItem="CcX-Gv-YEw" firstAttribute="centerX" secondItem="wyl-dQ-lwh" secondAttribute="centerX" id="DFq-DD-9Ql"/>
-                                            <constraint firstItem="gRd-IN-G6J" firstAttribute="height" secondItem="wyl-dQ-lwh" secondAttribute="height" id="IdA-qp-sed"/>
-                                            <constraint firstItem="gRd-IN-G6J" firstAttribute="centerX" secondItem="wyl-dQ-lwh" secondAttribute="centerX" id="JNI-bh-FEH"/>
-                                            <constraint firstItem="CcX-Gv-YEw" firstAttribute="width" secondItem="wyl-dQ-lwh" secondAttribute="width" id="NA1-Ae-cCM"/>
-                                            <constraint firstAttribute="width" constant="20" id="T9i-oX-epe"/>
-                                            <constraint firstItem="gRd-IN-G6J" firstAttribute="width" secondItem="wyl-dQ-lwh" secondAttribute="width" id="hoU-4B-JFP"/>
-                                            <constraint firstItem="CcX-Gv-YEw" firstAttribute="centerY" secondItem="wyl-dQ-lwh" secondAttribute="centerY" id="mF9-GT-OLh"/>
+                                            <constraint firstAttribute="width" constant="98" id="zIg-XP-Ych"/>
                                         </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLN-6V-ot2">
-                                <rect key="frame" x="30" y="89" width="442" height="1"/>
+                                <rect key="frame" x="30" y="90" width="442" height="1"/>
                                 <color key="backgroundColor" red="0.52549019607843139" green="0.55294117647058827" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Hxu-OI-Z17"/>
@@ -110,12 +106,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="9ys-G4-ya5" secondAttribute="bottom" constant="5" id="0gV-c1-Vc3"/>
                             <constraint firstItem="9ys-G4-ya5" firstAttribute="leading" secondItem="gIo-5K-re7" secondAttribute="leading" constant="30" id="69X-bg-0Kc"/>
-                            <constraint firstItem="9ys-G4-ya5" firstAttribute="top" secondItem="gIo-5K-re7" secondAttribute="top" constant="5" id="BKd-d3-aM1"/>
+                            <constraint firstItem="9ys-G4-ya5" firstAttribute="top" secondItem="gIo-5K-re7" secondAttribute="top" id="BKd-d3-aM1"/>
                             <constraint firstAttribute="trailing" secondItem="iLN-6V-ot2" secondAttribute="trailing" id="aTm-Xa-E76"/>
-                            <constraint firstAttribute="bottom" secondItem="iLN-6V-ot2" secondAttribute="bottom" constant="1" id="d93-HO-8bc"/>
+                            <constraint firstAttribute="bottom" secondItem="iLN-6V-ot2" secondAttribute="bottom" id="d93-HO-8bc"/>
                             <constraint firstItem="iLN-6V-ot2" firstAttribute="leading" secondItem="gIo-5K-re7" secondAttribute="leading" constant="30" id="gPe-nW-bxP"/>
+                            <constraint firstItem="iLN-6V-ot2" firstAttribute="top" secondItem="9ys-G4-ya5" secondAttribute="bottom" id="hZE-ce-ksx"/>
                             <constraint firstAttribute="trailing" secondItem="9ys-G4-ya5" secondAttribute="trailing" constant="10" id="zh8-uZ-MXk"/>
                         </constraints>
                     </view>
@@ -129,18 +125,25 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="deleteImage" destination="CcX-Gv-YEw" id="5UN-hr-MYm"/>
-                <outlet property="deleteView" destination="wyl-dQ-lwh" id="hga-K0-8se"/>
+                <outlet property="buttonStackWidth" destination="zIg-XP-Ych" id="AB5-kg-fQC"/>
+                <outlet property="deleteButton" destination="0Sv-at-ubt" id="zkk-UZ-ZqL"/>
+                <outlet property="folderButton" destination="L1y-tV-zlT" id="s0r-Ir-fVF"/>
                 <outlet property="folderImage" destination="68E-Yv-46E" id="bWF-HC-3wa"/>
                 <outlet property="folderName" destination="xAj-AK-Oqc" id="LqC-T2-gkU"/>
                 <outlet property="numberOfNotes" destination="yny-pM-S4u" id="n00-I5-GhF"/>
                 <outlet property="seperator" destination="iLN-6V-ot2" id="hss-lV-zkl"/>
+                <outlet property="stackLeadingConstraint" destination="69X-bg-0Kc" id="12O-Sd-ahL"/>
+                <outlet property="topView" destination="gIo-5K-re7" id="ecv-Y3-J1O"/>
             </connections>
             <point key="canvasLocation" x="228.98550724637684" y="75.334821428571431"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
