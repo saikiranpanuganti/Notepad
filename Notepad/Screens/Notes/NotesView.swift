@@ -28,6 +28,8 @@ class NotesView: UIView {
     var isEditingMode: Bool = false
     
     var folder: Folder?
+    var pinnedNotes: [Note] = []
+    var notes: [Note] = []
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -42,8 +44,8 @@ class NotesView: UIView {
         
         addView.layer.cornerRadius = 30
         
-        tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         tableView.register(UINib(nibName: "NoteTableViewCell", bundle: nil), forCellReuseIdentifier: "NoteTableViewCell")
+        tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "HeaderTableViewCell")
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,15 +69,31 @@ class NotesView: UIView {
 }
 
 extension NotesView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return folder?.notes.count ?? 0
+        if section == 0 {
+            return pinnedNotes.count
+        }else {
+            return notes.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
-            cell.delegate = self
-            cell.configureUI(note: folder?.notes[indexPath.row])
-            return cell
+        if indexPath.section == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
+                cell.delegate = self
+                cell.configureUI(note: pinnedNotes[indexPath.row])
+                return cell
+            }
+        }else {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
+                cell.delegate = self
+                cell.configureUI(note: notes[indexPath.row])
+                return cell
+            }
         }
+        
         return UITableViewCell()
     }
 }
@@ -86,8 +104,35 @@ extension NotesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isEditingMode {
             searchTextField.resignFirstResponder()
-            delegate?.updateNote(note: folder?.notes[indexPath.row])
+            if indexPath.section == 0 {
+                delegate?.updateNote(note: pinnedNotes[indexPath.row])
+            }else {
+                delegate?.updateNote(note: notes[indexPath.row])
+            }
         }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let headerView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as? HeaderTableViewCell {
+            if section == 0 {
+                headerView.configureUI(title: "Pinned Notes")
+            }else {
+                headerView.configureUI(title: "Notes")
+            }
+            return headerView
+        }
+        return UIView()
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            if pinnedNotes.count == 0 {
+                return 0
+            }
+        }else if section == 1 {
+            if notes.count == 0 {
+                return 0
+            }
+        }
+        return 30
     }
 }
 extension NotesView: UITextFieldDelegate {

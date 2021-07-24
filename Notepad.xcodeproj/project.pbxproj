@@ -39,6 +39,8 @@
 		7F76E17C26A743B400D0EEC9 /* SplashModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17B26A743B400D0EEC9 /* SplashModel.swift */; };
 		7F76E18026A7630100D0EEC9 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F76E17E26A7630100D0EEC9 /* NoteTableViewCell.swift */; };
 		7F76E18126A7630100D0EEC9 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */; };
+		7FD9670626AC889A00A3554E /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9670426AC889A00A3554E /* HeaderTableViewCell.swift */; };
+		7FD9670726AC889A00A3554E /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD9670526AC889A00A3554E /* HeaderTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		7F76E17B26A743B400D0EEC9 /* SplashModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModel.swift; sourceTree = "<group>"; };
 		7F76E17E26A7630100D0EEC9 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
+		7FD9670426AC889A00A3554E /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		7FD9670526AC889A00A3554E /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,7 @@
 				7F76E15526A6B5E000D0EEC9 /* NotesView.swift */,
 				7F76E15626A6B5E000D0EEC9 /* NotesViewController.swift */,
 				7F76E15726A6B5E000D0EEC9 /* NotesModel.swift */,
+				7FD9670826AC889E00A3554E /* Header */,
 				7F76E17D26A762E400D0EEC9 /* NoteCell */,
 			);
 			path = Notes;
@@ -215,6 +220,15 @@
 				7F76E17F26A7630100D0EEC9 /* NoteTableViewCell.xib */,
 			);
 			path = NoteCell;
+			sourceTree = "<group>";
+		};
+		7FD9670826AC889E00A3554E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				7FD9670426AC889A00A3554E /* HeaderTableViewCell.swift */,
+				7FD9670526AC889A00A3554E /* HeaderTableViewCell.xib */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +292,7 @@
 				7F76E12B26A6B3E500D0EEC9 /* Assets.xcassets in Resources */,
 				7F76E12626A6B3E300D0EEC9 /* Main.storyboard in Resources */,
 				7F76E18126A7630100D0EEC9 /* NoteTableViewCell.xib in Resources */,
+				7FD9670726AC889A00A3554E /* HeaderTableViewCell.xib in Resources */,
 				7F76E15426A6B5D700D0EEC9 /* NotesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +328,7 @@
 				7F76E13F26A6B48900D0EEC9 /* Fonts.swift in Sources */,
 				7F76E15926A6B5E000D0EEC9 /* NotesViewController.swift in Sources */,
 				7F76E15F26A6B5F200D0EEC9 /* AddNotesViewController.swift in Sources */,
+				7FD9670626AC889A00A3554E /* HeaderTableViewCell.swift in Sources */,
 				7F76E14D26A6B5BF00D0EEC9 /* FoldersView.swift in Sources */,
 				7F76E13C26A6B48900D0EEC9 /* Constants.swift in Sources */,
 				7F76E14926A6B5B400D0EEC9 /* SplashViewController.swift in Sources */,

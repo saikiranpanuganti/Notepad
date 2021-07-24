@@ -16,12 +16,16 @@ class NotesViewController: UIViewController {
         notesView.delegate = self
         notesModel.getData()
         notesView.folder = notesModel.folder
+        notesView.pinnedNotes = notesModel.pinnedNotes
+        notesView.notes = notesModel.notes
         notesView.setUpUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         notesModel.getData()
         notesView.folder = notesModel.folder
+        notesView.pinnedNotes = notesModel.pinnedNotes
+        notesView.notes = notesModel.notes
         notesView.updateUI()
     }
 }
@@ -30,6 +34,8 @@ extension NotesViewController: NotesViewDelegate {
     func delete(note: Note?) {
         notesModel.deleteNote(note: note)
         notesView.folder = notesModel.folder
+        notesView.pinnedNotes = notesModel.pinnedNotes
+        notesView.notes = notesModel.notes
         notesView.updateUI()
         
     }

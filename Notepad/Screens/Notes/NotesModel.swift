@@ -10,12 +10,22 @@ import Foundation
 class NotesModel {
     var folderName: String?
     var folder: Folder?
+    var pinnedNotes: [Note] = []
+    var notes: [Note] = []
     
     func getData() {
         if let folderName = folderName {
             for item in NotesData.shared.folders {
                 if item.name == folderName {
                     folder = item
+                    for note in item.notes {
+                        if note.pinned {
+                            pinnedNotes.append(note)
+                        }else {
+                            notes.append(note)
+                        }
+                    }
+                    break
                 }
             }
         }

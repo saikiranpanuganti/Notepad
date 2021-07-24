@@ -18,4 +18,5 @@ class Colors {
     var white = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) //FFFFFF
     var folder = #colorLiteral(red: 0.2392156863, green: 0.3058823529, blue: 0.3450980392, alpha: 1) //3D4E58
     var notesCount = #colorLiteral(red: 0.5254901961, green: 0.5529411765, blue: 0.5803921569, alpha: 1) //868D94
+    var notesSection = #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.2039215686, alpha: 1) //323234
 }
