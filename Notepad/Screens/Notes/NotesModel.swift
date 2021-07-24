@@ -14,6 +14,9 @@ class NotesModel {
     var notes: [Note] = []
     
     func getData() {
+        pinnedNotes = []
+        notes = []
+        
         if let folderName = folderName {
             for item in NotesData.shared.folders {
                 if item.name == folderName {
@@ -36,6 +39,11 @@ class NotesModel {
             refreshNotesData()
             getData()
         }
+    }
+    func updateNote(message: String, id: String, pinned: Bool) {
+        CoreDataManager.updateNote(message: message, id: id, pinned: pinned)
+        refreshNotesData()
+        getData()
     }
     func refreshNotesData() {
         var folders: [Folder] = []

@@ -48,7 +48,7 @@ class CoreDataManager {
         return nil
     }
     
-    static func addNoteToFolder(folder: String?, message: String) {
+    static func addNoteToFolder(folder: String?, message: String, pinned: Bool = false) {
         guard let context = getContext() else { return }
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {return}
@@ -57,6 +57,7 @@ class CoreDataManager {
         note.setValue(message, forKey: "message")
         note.setValue(UUID().uuidString, forKey: "id")
         note.setValue(Date(), forKey: "date")
+        note.setValue(false, forKey: "pinned")
         
         do {
             try context.save()
@@ -65,7 +66,7 @@ class CoreDataManager {
         }
     }
     
-    static func updateNote(message: String, id: String) {
+    static func updateNote(message: String, id: String, pinned: Bool = false) {
         guard let context = getContext() else { return }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
@@ -78,6 +79,7 @@ class CoreDataManager {
                 if let note = notes[0] as? Note {
                     note.message = message
                     note.date = Date()
+                    note.pinned = pinned
                 }
             }
         }catch {

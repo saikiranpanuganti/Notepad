@@ -10,6 +10,7 @@ import UIKit
 class HeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var pinnedImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,7 +20,10 @@ class HeaderTableViewCell: UITableViewCell {
         topView.backgroundColor = Colors.shared.notesSection
         titleLabel.textColor = Colors.shared.white
     }
-    func configureUI(title: String) {
+    func configureUI(title: String, pinned: Bool) {
+        if !pinned {
+            pinnedImage.isHidden = true
+        }
         titleLabel.text = title
     }
 }

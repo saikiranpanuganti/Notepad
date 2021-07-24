@@ -31,14 +31,6 @@ class NotesViewController: UIViewController {
 }
 
 extension NotesViewController: NotesViewDelegate {
-    func delete(note: Note?) {
-        notesModel.deleteNote(note: note)
-        notesView.folder = notesModel.folder
-        notesView.pinnedNotes = notesModel.pinnedNotes
-        notesView.notes = notesModel.notes
-        notesView.updateUI()
-        
-    }
     func updateNote(note: Note?) {
         if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
             controller.addNotesModel.folder = notesModel.folder
@@ -54,5 +46,22 @@ extension NotesViewController: NotesViewDelegate {
     }
     func backTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    func delete(note: Note?) {
+        notesModel.deleteNote(note: note)
+        notesView.folder = notesModel.folder
+        notesView.pinnedNotes = notesModel.pinnedNotes
+        notesView.notes = notesModel.notes
+        notesView.updateUI()
+        
+    }
+    func pinTapped(note: Note?) {
+        if let note = note, let message = note.message, let id = note.id {
+            notesModel.updateNote(message: message, id: id, pinned: !note.pinned)
+            notesView.folder = notesModel.folder
+            notesView.pinnedNotes = notesModel.pinnedNotes
+            notesView.notes = notesModel.notes
+            notesView.updateUI()
+        }
     }
 }

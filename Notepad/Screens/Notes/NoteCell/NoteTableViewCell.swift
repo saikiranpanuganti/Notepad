@@ -17,6 +17,7 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var seperator: UIView!
+    @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var buttonStackWidth: NSLayoutConstraint!
     @IBOutlet weak var stackLeadingConstraint: NSLayoutConstraint!
     
@@ -38,12 +39,16 @@ class NoteTableViewCell: UITableViewCell {
     func setUpUI() {
         seperator.backgroundColor = Colors.shared.lightGrey
         dateLabel.textColor = Colors.shared.searchText
-        print("")
     }
-    func configureUI(note: Note?) {
+    func configureUI(note: Note?, pinned: Bool) {
         self.note = note
         messageLabel.text = note?.message ?? ""
         dateLabel.text = note?.date?.convertToDateString(formatType: .DDMMYY) ?? ""
+        if pinned {
+            pinButton.setImage(UIImage(systemName: "pin.slash.fill"), for: .normal)
+        }else {
+            pinButton.setImage(UIImage(systemName: "pin.fill"), for: .normal)
+        }
     }
     func addPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))

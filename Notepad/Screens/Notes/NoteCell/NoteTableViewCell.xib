@@ -98,6 +98,7 @@
                 <outlet property="buttonStackWidth" destination="Jq3-QQ-LWR" id="t2f-Un-W0a"/>
                 <outlet property="dateLabel" destination="4De-zh-yRK" id="TOW-jW-23b"/>
                 <outlet property="messageLabel" destination="0lx-aB-Jdy" id="5NY-67-PNL"/>
+                <outlet property="pinButton" destination="jMP-UV-zUB" id="uEy-c3-muN"/>
                 <outlet property="seperator" destination="hgj-Ap-z3V" id="MHq-te-xd8"/>
                 <outlet property="stackLeadingConstraint" destination="xo6-Yw-Kof" id="KnS-qJ-1Aq"/>
                 <outlet property="topView" destination="f1D-Dv-CEh" id="TF6-FX-fk5"/>

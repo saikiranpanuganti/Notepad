@@ -12,6 +12,7 @@ protocol NotesViewDelegate: AnyObject {
     func addTapped()
     func updateNote(note: Note?)
     func delete(note: Note?)
+    func pinTapped(note: Note?)
 }
 
 class NotesView: UIView {
@@ -83,13 +84,13 @@ extension NotesView: UITableViewDataSource {
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
                 cell.delegate = self
-                cell.configureUI(note: pinnedNotes[indexPath.row])
+                cell.configureUI(note: pinnedNotes[indexPath.row], pinned: true)
                 return cell
             }
         }else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
                 cell.delegate = self
-                cell.configureUI(note: notes[indexPath.row])
+                cell.configureUI(note: notes[indexPath.row], pinned: false)
                 return cell
             }
         }
@@ -114,9 +115,9 @@ extension NotesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as? HeaderTableViewCell {
             if section == 0 {
-                headerView.configureUI(title: "Pinned Notes")
+                headerView.configureUI(title: "Pinned Notes", pinned: true)
             }else {
-                headerView.configureUI(title: "Notes")
+                headerView.configureUI(title: "Notes", pinned: false)
             }
             return headerView
         }
@@ -146,6 +147,6 @@ extension NotesView: NoteTableViewCellDelegate {
         delegate?.delete(note: note)
     }
     func pinTapped(note: Note?) {
-        
+        delegate?.pinTapped(note: note)
     }
 }
