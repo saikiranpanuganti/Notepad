@@ -66,7 +66,7 @@ class CoreDataManager {
         }
     }
     
-    static func updateNote(message: String, id: String, pinned: Bool = false) {
+    static func updateNote(message: String, id: String, pinned: Bool? = nil, folderName: String? = nil) {
         guard let context = getContext() else { return }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
@@ -79,7 +79,14 @@ class CoreDataManager {
                 if let note = notes[0] as? Note {
                     note.message = message
                     note.date = Date()
-                    note.pinned = pinned
+                    
+                    if let pinned = pinned {
+                        note.pinned = pinned
+                    }
+                    
+                    if let folderName = folderName {
+                        note.folder = folderName
+                    }
                 }
             }
         }catch {
@@ -112,6 +119,12 @@ class CoreDataManager {
                     deleteNote(note: note)
                 }
             }
+        }
+    }
+    
+    static func updateFolderName(folder: Folder, folderName: String) {
+        for note in folder.notes {
+            updateNote(message: note.message ?? "", id: note.id ?? "", pinned: note.pinned, folderName: folderName)
         }
     }
 }

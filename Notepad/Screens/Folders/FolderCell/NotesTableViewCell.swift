@@ -9,7 +9,7 @@ import UIKit
 
 protocol NotesTableViewCellDelegate: AnyObject {
     func deleteTapped(folder: String?)
-    func pingTapped(folder: String?)
+    func changeFolderNameTapped(folder: Folder?)
 }
 
 class NotesTableViewCell: UITableViewCell {
@@ -19,7 +19,6 @@ class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var numberOfNotes: UILabel!
     @IBOutlet weak var seperator: UIView!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var folderButton: UIButton!
     @IBOutlet weak var buttonStackWidth: NSLayoutConstraint!
     @IBOutlet weak var stackLeadingConstraint: NSLayoutConstraint!
     
@@ -28,7 +27,7 @@ class NotesTableViewCell: UITableViewCell {
     var menuPanelCollapsed: Bool = true
     var isEditOn: Bool = false
     var postedNotification: Bool = false
-    var folder: String?
+    var folder: Folder?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +47,7 @@ class NotesTableViewCell: UITableViewCell {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
         topView.addGestureRecognizer(panGesture)
     }
-    func configureUI(mainCell: Bool, folder: String, notesCount: Int, indexPath: IndexPath) {
+    func configureUI(mainCell: Bool, folder: Folder, notesCount: Int, indexPath: IndexPath) {
         if mainCell {
             folderImage.tintColor = Colors.shared.redColor
             folderName.textColor = Colors.shared.redColor
@@ -58,7 +57,7 @@ class NotesTableViewCell: UITableViewCell {
             folderName.textColor = Colors.shared.white
             folderImage.image = UIImage(systemName: "folder")
         }
-        folderName.text = folder
+        folderName.text = folder.name
         numberOfNotes.text = String(notesCount)
         self.folder = folder
     }
@@ -68,11 +67,11 @@ class NotesTableViewCell: UITableViewCell {
     }
     @IBAction func deleteTapped(_ sender: UIButton) {
         hideStack(duration: 0)
-        delegate?.deleteTapped(folder: folder)
+        delegate?.deleteTapped(folder: folder?.name)
     }
-    @IBAction func pingTapped(_ sender: UIButton) {
+    @IBAction func changeFolderNameTapped(_ sender: UIButton) {
         hideStack(duration: 0)
-        delegate?.pingTapped(folder: folder)
+        delegate?.changeFolderNameTapped(folder: folder)
     }
     @objc func editingNotification(_ notification: Notification){
         if isEditOn && !postedNotification {

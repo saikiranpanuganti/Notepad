@@ -28,7 +28,12 @@ class FoldersViewController: UIViewController {
         foldersView.folders = foldersModel.folders
         foldersView.updateUI()
     }
-    func showAlertController() {
+    func updateFolderName(folder: Folder?, folderName: String) {
+        foldersModel.changeFolderNameTapped(folder: folder, folderName: folderName)
+        foldersView.folders = foldersModel.folders
+        foldersView.updateUI()
+    }
+    func showAlertController(updateFolderName: Bool, folder: Folder? = nil) {
         let alertController = UIAlertController(title: "Create a folder", message: "", preferredStyle: .alert)
         alertController.addTextField { textfield in
             textfield.placeholder = "Enter folder name"
@@ -36,7 +41,11 @@ class FoldersViewController: UIViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) { alert in
             if let firstTextfield = alertController.textFields?[0] {
                 if let text = firstTextfield.text, text.replacingOccurrences(of: " ", with: "") != "" {
-                    self.createFolder(folderName: text)
+                    if updateFolderName {
+                        self.updateFolderName(folder: folder, folderName: text)
+                    }else {
+                        self.createFolder(folderName: text)
+                    }
                 }
             }
         }
@@ -54,7 +63,7 @@ extension FoldersViewController: FoldersViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     func addFolderTapped() {
-        showAlertController()
+        showAlertController(updateFolderName: false)
     }
     func folderTapped(folder: Folder) {
         if let controller = Controller.notes.getViewController() as? NotesViewController {
@@ -63,9 +72,11 @@ extension FoldersViewController: FoldersViewDelegate {
         }
     }
     func deleteFolder(folder: String?) {
-        print("FoldersViewController deleteTapped")
         foldersModel.deleteFolder(folder: folder)
         foldersView.folders = foldersModel.folders
         foldersView.updateUI()
+    }
+    func changeFolderNameTapped(folder: Folder?) {
+        showAlertController(updateFolderName: true, folder: folder)
     }
 }

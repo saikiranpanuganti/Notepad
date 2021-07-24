@@ -78,10 +78,10 @@
                                                 <color key="tintColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal">
                                                     <color key="titleColor" systemColor="systemBlueColor"/>
-                                                    <imageReference key="image" image="pin.fill" catalog="system" symbolScale="large"/>
+                                                    <imageReference key="image" image="folder.fill.badge.questionmark" catalog="system" symbolScale="large"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="pingTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="664-dD-r1Q"/>
+                                                    <action selector="changeFolderNameTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Oy-L2-yhO"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sv-at-ubt">
@@ -133,7 +133,6 @@
             <connections>
                 <outlet property="buttonStackWidth" destination="zIg-XP-Ych" id="AB5-kg-fQC"/>
                 <outlet property="deleteButton" destination="0Sv-at-ubt" id="zkk-UZ-ZqL"/>
-                <outlet property="folderButton" destination="L1y-tV-zlT" id="s0r-Ir-fVF"/>
                 <outlet property="folderImage" destination="68E-Yv-46E" id="bWF-HC-3wa"/>
                 <outlet property="folderName" destination="xAj-AK-Oqc" id="LqC-T2-gkU"/>
                 <outlet property="numberOfNotes" destination="yny-pM-S4u" id="n00-I5-GhF"/>
@@ -146,7 +145,7 @@
     </objects>
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
-        <image name="pin.fill" catalog="system" width="119" height="128"/>
+        <image name="folder.fill.badge.questionmark" catalog="system" width="128" height="91"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

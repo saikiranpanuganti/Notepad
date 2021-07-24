@@ -12,6 +12,7 @@ protocol FoldersViewDelegate: AnyObject {
     func addNotesTapped()
     func addFolderTapped()
     func deleteFolder(folder: String?)
+    func changeFolderNameTapped(folder: Folder?)
 }
 
 class FoldersView: UIView {
@@ -67,7 +68,7 @@ extension FoldersView: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count, indexPath: indexPath)
+            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row], notesCount: folders[indexPath.row].notes.count, indexPath: indexPath)
             cell.delegate = self
             return cell
         }
@@ -95,7 +96,7 @@ extension FoldersView: NotesTableViewCellDelegate {
         delegate?.deleteFolder(folder: folder)
     }
     
-    func pingTapped(folder: String?) {
-        
+    func changeFolderNameTapped(folder: Folder?) {
+        delegate?.changeFolderNameTapped(folder: folder)
     }
 }

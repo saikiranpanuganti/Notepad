@@ -31,6 +31,22 @@ class FoldersModel {
             refreshNotesData()
         }
     }
+    func changeFolderNameTapped(folder: Folder?, folderName: String) {
+        if let folder = folder {
+            CoreDataManager.updateFolderName(folder: folder, folderName: folderName)
+            if var folderNames = UserDefaults.standard.value(forKey: "folders") as? [String] {
+                for (index, name) in folderNames.enumerated() {
+                    if name == folder.name {
+                        folderNames.remove(at: index)
+                        folderNames.append(folderName)
+                        UserDefaults.standard.setValue(folderNames, forKey: "folders")
+                        refreshNotesData()
+                        break
+                    }
+                }
+            }
+        }
+    }
     func removeFolderFromUserDefaults(folder: String) {
         if var folderNames = UserDefaults.standard.value(forKey: "folders") as? [String] {
             for (index, folderName) in folderNames.enumerated() {
