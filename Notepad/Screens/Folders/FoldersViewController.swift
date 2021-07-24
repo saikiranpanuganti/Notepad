@@ -15,6 +15,10 @@ class FoldersViewController: UIViewController {
         super.viewDidLoad()
         foldersView.delegate = self
         foldersView.setUpUI()
+        foldersModel.getData()
+        let data = foldersModel.folders
+        foldersView.folders = data
+        foldersView.updateUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,10 +29,12 @@ class FoldersViewController: UIViewController {
         alertController.addTextField { textfield in
             textfield.placeholder = "Enter folder name"
         }
+        // MARK: - Add alert Button
         let addAction = UIAlertAction(title: "Add", style: .default) { alert in
             if let firstTextfield = alertController.textFields?[0] {
                 if let text = firstTextfield.text, text.replacingOccurrences(of: " ", with: "") != "" {
-                    print("Create folder with name ", text)
+                    // MARK: - Create a tableview cell with this name
+                    self.createFolder(folderName: text)
                 }
             }
         }
@@ -38,19 +44,22 @@ class FoldersViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    func createFolder(folderName: String) {
+        foldersModel.createFolder(folderName: folderName)
+        let data = foldersModel.folders
+        foldersView.folders = data
+        foldersView.updateUI()
+    }
 }
 
 extension FoldersViewController: FoldersViewDelegate {
-    func addNotesTapped() {
-        let controller = Controller.addNotes.getViewController()
-        navigationController?.pushViewController(controller, animated: true)
+    func navigateToNotesController(folderName: String) {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotesViewController") as? NotesViewController {
+            controller.notesModel.folderName = folderName
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     func addFolderTapped() {
         showAlertController()
-    }
-    func folderTapped() {
-        if let controller = Controller.notes.getViewController() as? NotesViewController {
-            navigationController?.pushViewController(controller, animated: true)
-        }
     }
 }

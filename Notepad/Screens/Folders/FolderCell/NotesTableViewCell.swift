@@ -38,6 +38,7 @@ class NotesTableViewCell: UITableViewCell {
         NotificationCenter.default.addObserver(self, selector:#selector(editingNotification(_:)), name: NSNotification.Name("EditInfoNotification"), object: nil)
     }
     func setUpUI() {
+        folderName.textColor = .white
         seperator.backgroundColor = Colors.shared.lightGrey
         numberOfNotes.layer.cornerRadius = 10.0
         numberOfNotes.layer.borderWidth = 2.0
@@ -47,20 +48,24 @@ class NotesTableViewCell: UITableViewCell {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
         topView.addGestureRecognizer(panGesture)
     }
-    func configureUI(mainCell: Bool, folder: String, notesCount: Int, indexPath: IndexPath) {
-        if mainCell {
-            folderImage.tintColor = Colors.shared.redColor
-            folderName.textColor = Colors.shared.redColor
-            folderImage.image = UIImage(systemName: "archivebox")
-        }else {
-            folderImage.tintColor = Colors.shared.folder
-            folderName.textColor = Colors.shared.white
-            folderImage.image = UIImage(systemName: "folder")
-        }
+    
+    func configureUI(folder: String) {
         folderName.text = folder
-        numberOfNotes.text = String(notesCount)
-        self.folder = folder
     }
+//    func configureUI(mainCell: Bool, folder: String, notesCount: Int, indexPath: IndexPath) {
+//        if mainCell {
+//            folderImage.tintColor = Colors.shared.redColor
+//            folderName.textColor = Colors.shared.redColor
+//            folderImage.image = UIImage(systemName: "archivebox")
+//        }else {
+//            folderImage.tintColor = Colors.shared.folder
+//            folderName.textColor = Colors.shared.white
+//            folderImage.image = UIImage(systemName: "folder")
+//        }
+//        folderName.text = folder
+//        numberOfNotes.text = String(notesCount)
+//        self.folder = folder
+//    }
     func postEditInfoNotification() {
         postedNotification = true
         NotificationCenter.default.post(name: NSNotification.Name("EditInfoNotification"), object: nil, userInfo: nil)

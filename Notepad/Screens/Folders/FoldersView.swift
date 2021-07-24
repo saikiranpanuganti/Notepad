@@ -8,9 +8,8 @@
 import UIKit
 
 protocol FoldersViewDelegate: AnyObject {
-    func folderTapped()
-    func addNotesTapped()
     func addFolderTapped()
+    func navigateToNotesController(folderName: String)
 }
 
 class FoldersView: UIView {
@@ -25,6 +24,8 @@ class FoldersView: UIView {
     weak var delegate: FoldersViewDelegate?
     var isEditing: Bool = false
     var editingIndexPath: IndexPath?
+    
+    var folders: [String] = []
         
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -54,21 +55,21 @@ class FoldersView: UIView {
     }
     @IBAction func addNotesTapped(_ sender: UIButton) {
         searchTextField.resignFirstResponder()
-        delegate?.addNotesTapped()
     }
 }
 
 extension FoldersView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return folders.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var isMainCell: Bool = false
-        if indexPath.row == 0 {
-            isMainCell = true
-        }
+//        var isMainCell: Bool = false
+//        if indexPath.row == 0 {
+//            isMainCell = true
+//        }
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-            cell.configureUI(mainCell: isMainCell, folder: "folder \(String(indexPath.row))", notesCount: indexPath.row, indexPath: indexPath)
+//            cell.configureUI(mainCell: isMainCell, folder: folders[indexPath.row], notesCount: 0, indexPath: indexPath)
+            cell.configureUI(folder: folders[indexPath.row])
             cell.delegate = self
             return cell
         }
@@ -81,7 +82,8 @@ extension FoldersView: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTextField.resignFirstResponder()
-        delegate?.folderTapped()
+        let folderName = folders[indexPath.row]
+        delegate?.navigateToNotesController(folderName: folderName)
     }
 }
 extension FoldersView: UITextFieldDelegate {

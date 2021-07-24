@@ -14,6 +14,8 @@ class NotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         notesView.delegate = self
+        let folderName = notesModel.folderName
+        notesView.folderName = folderName
         notesView.setUpUI()
     }
     override func viewWillAppear(_ animated: Bool) {

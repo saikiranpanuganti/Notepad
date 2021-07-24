@@ -103,13 +103,13 @@ class CoreDataManager {
         }
     }
     
-    static func deleteFolder(folder: String?) {
-        if let folder = folder {
-            if let notes = fetchNotesOfFolder(folder: folder) {
-                for note in notes {
-                    deleteNote(note: note)
-                }
-            }
-        }
-    }
+//    static func deleteFolder(folder: String?) {
+//        if let folder = folder {
+//            if let notes = fetchNotesOfFolder(folder: folder) {
+//                for note in notes {
+//                    deleteNote(note: note)
+//                }
+//            }
+//        }
+//    }
 }

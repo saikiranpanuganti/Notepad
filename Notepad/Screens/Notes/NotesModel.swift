@@ -8,5 +8,5 @@
 import Foundation
 
 class NotesModel {
-    
+    var folderName: String = ""
 }
