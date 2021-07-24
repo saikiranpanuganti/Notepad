@@ -53,7 +53,7 @@ class CoreDataManager {
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {return}
         let note = NSManagedObject(entity: entity, insertInto: context)
-        note.setValue(folder ?? "Any", forKey: "folder")
+        note.setValue(folder ?? "All Notes", forKey: "folder")
         note.setValue(message, forKey: "message")
         note.setValue(UUID().uuidString, forKey: "id")
         note.setValue(Date(), forKey: "date")

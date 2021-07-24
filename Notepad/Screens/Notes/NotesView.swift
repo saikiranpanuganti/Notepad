@@ -73,7 +73,6 @@ extension NotesView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
             cell.delegate = self
-            cell.toggleDeleteButton(isEditingMode: isEditingMode)
             cell.configureUI(note: folder?.notes[indexPath.row])
             return cell
         }
@@ -100,5 +99,8 @@ extension NotesView: UITextFieldDelegate {
 extension NotesView: NoteTableViewCellDelegate {
     func deleteTapped(note: Note?) {
         delegate?.delete(note: note)
+    }
+    func pinTapped(note: Note?) {
+        
     }
 }

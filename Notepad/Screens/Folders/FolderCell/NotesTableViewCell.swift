@@ -67,12 +67,11 @@ class NotesTableViewCell: UITableViewCell {
         NotificationCenter.default.post(name: NSNotification.Name("EditInfoNotification"), object: nil, userInfo: nil)
     }
     @IBAction func deleteTapped(_ sender: UIButton) {
-        print("delete tapped")
+        hideStack(duration: 0)
         delegate?.deleteTapped(folder: folder)
-        hideStack(duration: 0.3)
     }
     @IBAction func pingTapped(_ sender: UIButton) {
-        print("pingTapped tapped")
+        hideStack(duration: 0)
         delegate?.pingTapped(folder: folder)
     }
     @objc func editingNotification(_ notification: Notification){

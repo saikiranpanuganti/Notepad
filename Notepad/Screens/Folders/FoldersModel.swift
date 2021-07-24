@@ -55,7 +55,7 @@ class FoldersModel {
         for folder in folders {
             allNotes = allNotes + folder.notes
         }
-        allNotes = allNotes + getNotesInFolder(folderName: "Any")
+        allNotes = allNotes + getNotesInFolder(folderName: "All Notes")
         
         folders.insert(Folder(name: "All Notes", notes: allNotes, isMain: true), at: 0)
         
