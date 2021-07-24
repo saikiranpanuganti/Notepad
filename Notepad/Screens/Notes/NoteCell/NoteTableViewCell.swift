@@ -52,6 +52,7 @@ class NoteTableViewCell: UITableViewCell {
     }
     func addPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+        panGesture.delegate = self
         topView.addGestureRecognizer(panGesture)
     }
     func postEditInfoNotification() {
@@ -81,11 +82,21 @@ class NoteTableViewCell: UITableViewCell {
             }
             
             if menuPanelCollapsed {
-                buttonStackWidth.constant = -translation.x
-                stackLeadingConstraint.constant = 30 + translation.x
+                if -translation.x < 0 {
+                    buttonStackWidth.constant = 0
+                    stackLeadingConstraint.constant = 30
+                }else {
+                    buttonStackWidth.constant = -translation.x
+                    stackLeadingConstraint.constant = 30 + translation.x
+                }
             }else {
-                buttonStackWidth.constant = 118 - translation.x
-                stackLeadingConstraint.constant = -88 + translation.x
+                if 118 - translation.x < 0 {
+                    buttonStackWidth.constant = 0
+                    stackLeadingConstraint.constant = 30
+                }else {
+                    buttonStackWidth.constant = 118 - translation.x
+                    stackLeadingConstraint.constant = -88 + translation.x
+                }
             }
             
             topView.layoutIfNeeded()
@@ -128,5 +139,14 @@ class NoteTableViewCell: UITableViewCell {
     @IBAction func pinTapped(_ sender: UIButton) {
         hideStack(duration: 0)
         delegate?.pinTapped(note: note)
+    }
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
+            let translation = panGestureRecognizer.translation(in: superview)
+            if abs(translation.x) > abs(translation.y) {
+                return true
+            }
+        }
+        return false
     }
 }
