@@ -8,8 +8,7 @@
 import UIKit
 
 protocol NotesTableViewCellDelegate: AnyObject {
-    func deleteTapped(folder: String?)
-    func pingTapped(folder: String?)
+    
 }
 
 class NotesTableViewCell: UITableViewCell {
@@ -67,13 +66,10 @@ class NotesTableViewCell: UITableViewCell {
         NotificationCenter.default.post(name: NSNotification.Name("EditInfoNotification"), object: nil, userInfo: nil)
     }
     @IBAction func deleteTapped(_ sender: UIButton) {
-        print("delete tapped")
-        delegate?.deleteTapped(folder: folder)
         hideStack(duration: 0.3)
     }
     @IBAction func pingTapped(_ sender: UIButton) {
-        print("pingTapped tapped")
-        delegate?.pingTapped(folder: folder)
+        hideStack(duration: 0.3)
     }
     @objc func editingNotification(_ notification: Notification){
         if isEditOn && !postedNotification {

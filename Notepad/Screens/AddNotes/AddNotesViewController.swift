@@ -16,7 +16,6 @@ class AddNotesViewController: UIViewController {
 
         addNotesView.delegate = self
         addNotesView.setUpUI()
-        addNotesView.note = addNotesModel.note
         addNotesView.updateUI()
     }
     
@@ -25,7 +24,7 @@ class AddNotesViewController: UIViewController {
 extension AddNotesViewController: AddNotesViewDelegate {
     func saveNote(message: String) {
         if message.replacingOccurrences(of: " ", with: "") != "" {
-            addNotesModel.saveNote(message: message)
+            
         }
     }
     func backTapped() {

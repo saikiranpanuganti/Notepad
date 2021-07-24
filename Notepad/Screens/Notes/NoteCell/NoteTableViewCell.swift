@@ -31,7 +31,6 @@ class NoteTableViewCell: UITableViewCell {
         deleteImage.tintColor = Colors.shared.redColor
         seperator.backgroundColor = Colors.shared.lightGrey
         dateLabel.textColor = Colors.shared.searchText
-        print("")
     }
     func toggleDeleteButton(isEditingMode: Bool) {
         DispatchQueue.main.async {
@@ -48,10 +47,10 @@ class NoteTableViewCell: UITableViewCell {
     }
     func configureUI(note: Note?) {
         self.note = note
-        messageLabel.text = note?.message ?? ""
-        dateLabel.text = note?.date?.convertToDateString(formatType: .DDMMYY) ?? ""
+        messageLabel.text = note?.message ?? "Dummy Message"
+        dateLabel.text = note?.date?.convertToDateString(formatType: .DDMMYY) ?? String(Date().convertToDateString(formatType: .DDMMYY) ?? "")
     }
     @IBAction func deleteTapped(_ sender: UIButton) {
-        delegate?.deleteTapped(note: note)
+        
     }
 }

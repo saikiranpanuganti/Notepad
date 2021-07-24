@@ -15,18 +15,10 @@ class FoldersViewController: UIViewController {
         super.viewDidLoad()
         foldersView.delegate = self
         foldersView.setUpUI()
-        foldersView.folders = foldersModel.folders
-        foldersView.updateUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        foldersView.folders = foldersModel.folders
-        foldersView.updateUI()
-    }
-    func createFolder(folderName: String) {
-        foldersModel.createNewFolder(folderName: folderName)
-        foldersView.folders = foldersModel.folders
-        foldersView.updateUI()
+        
     }
     func showAlertController() {
         let alertController = UIAlertController(title: "Create a folder", message: "", preferredStyle: .alert)
@@ -36,7 +28,7 @@ class FoldersViewController: UIViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) { alert in
             if let firstTextfield = alertController.textFields?[0] {
                 if let text = firstTextfield.text, text.replacingOccurrences(of: " ", with: "") != "" {
-                    self.createFolder(folderName: text)
+                    print("Create folder with name ", text)
                 }
             }
         }
@@ -56,16 +48,9 @@ extension FoldersViewController: FoldersViewDelegate {
     func addFolderTapped() {
         showAlertController()
     }
-    func folderTapped(folder: Folder) {
+    func folderTapped() {
         if let controller = Controller.notes.getViewController() as? NotesViewController {
-            controller.notesModel.folderName = folder.name
             navigationController?.pushViewController(controller, animated: true)
         }
-    }
-    func deleteFolder(folder: String?) {
-        print("FoldersViewController deleteTapped")
-        foldersModel.deleteFolder(folder: folder)
-        foldersView.folders = foldersModel.folders
-        foldersView.updateUI()
     }
 }

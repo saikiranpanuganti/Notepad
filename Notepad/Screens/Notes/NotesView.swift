@@ -27,14 +27,13 @@ class NotesView: UIView {
     weak var delegate: NotesViewDelegate?
     var isEditingMode: Bool = false
     
-    var folder: Folder?
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
         searchScope.image = Images.shared.scope
         searchView.layer.cornerRadius = 10.0
         
-        title.text = folder?.name ?? ""
+        title.text = "Folder Name"
         
         let redPlaceholderText = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: Colors.shared.searchText])
         searchTextField.attributedPlaceholder = redPlaceholderText
@@ -68,13 +67,13 @@ class NotesView: UIView {
 
 extension NotesView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return folder?.notes.count ?? 0
+        return 4
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
             cell.delegate = self
             cell.toggleDeleteButton(isEditingMode: isEditingMode)
-            cell.configureUI(note: folder?.notes[indexPath.row])
+            cell.configureUI(note: nil)
             return cell
         }
         return UITableViewCell()
@@ -87,7 +86,6 @@ extension NotesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isEditingMode {
             searchTextField.resignFirstResponder()
-            delegate?.updateNote(note: folder?.notes[indexPath.row])
         }
     }
 }

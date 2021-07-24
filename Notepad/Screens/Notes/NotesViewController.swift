@@ -14,35 +14,26 @@ class NotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         notesView.delegate = self
-        notesModel.getData()
-        notesView.folder = notesModel.folder
         notesView.setUpUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        notesModel.getData()
-        notesView.folder = notesModel.folder
         notesView.updateUI()
     }
 }
 
 extension NotesViewController: NotesViewDelegate {
     func delete(note: Note?) {
-        notesModel.deleteNote(note: note)
-        notesView.folder = notesModel.folder
         notesView.updateUI()
         
     }
     func updateNote(note: Note?) {
         if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
-            controller.addNotesModel.folder = notesModel.folder
-            controller.addNotesModel.note = note
             navigationController?.pushViewController(controller, animated: true)
         }
     }
     func addTapped() {
         if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
-            controller.addNotesModel.folder = notesModel.folder
             navigationController?.pushViewController(controller, animated: true)
         }
     }

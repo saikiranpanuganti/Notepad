@@ -8,10 +8,9 @@
 import UIKit
 
 protocol FoldersViewDelegate: AnyObject {
-    func folderTapped(folder: Folder)
+    func folderTapped()
     func addNotesTapped()
     func addFolderTapped()
-    func deleteFolder(folder: String?)
 }
 
 class FoldersView: UIView {
@@ -26,9 +25,7 @@ class FoldersView: UIView {
     weak var delegate: FoldersViewDelegate?
     var isEditing: Bool = false
     var editingIndexPath: IndexPath?
-    
-    var folders: [Folder] = []
-    
+        
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
         searchScope.image = Images.shared.scope
@@ -63,11 +60,15 @@ class FoldersView: UIView {
 
 extension FoldersView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return folders.count
+        return 4
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var isMainCell: Bool = false
+        if indexPath.row == 0 {
+            isMainCell = true
+        }
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
-            cell.configureUI(mainCell: folders[indexPath.row].isMain, folder: folders[indexPath.row].name, notesCount: folders[indexPath.row].notes.count, indexPath: indexPath)
+            cell.configureUI(mainCell: isMainCell, folder: "folder \(String(indexPath.row))", notesCount: indexPath.row, indexPath: indexPath)
             cell.delegate = self
             return cell
         }
@@ -80,7 +81,7 @@ extension FoldersView: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTextField.resignFirstResponder()
-        delegate?.folderTapped(folder: folders[indexPath.row])
+        delegate?.folderTapped()
     }
 }
 extension FoldersView: UITextFieldDelegate {
@@ -90,12 +91,5 @@ extension FoldersView: UITextFieldDelegate {
     }
 }
 extension FoldersView: NotesTableViewCellDelegate {
-    func deleteTapped(folder: String?) {
-        print("FoldesView deleteTapped")
-        delegate?.deleteFolder(folder: folder)
-    }
     
-    func pingTapped(folder: String?) {
-        
-    }
 }
