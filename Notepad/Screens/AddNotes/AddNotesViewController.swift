@@ -19,7 +19,9 @@ class AddNotesViewController: UIViewController {
         addNotesView.note = addNotesModel.note
         addNotesView.updateUI()
     }
-    
+    func popController() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension AddNotesViewController: AddNotesViewDelegate {
@@ -29,10 +31,11 @@ extension AddNotesViewController: AddNotesViewDelegate {
         }
     }
     func backTapped() {
-        navigationController?.popViewController(animated: true)
+        popController()
     }
     func deleteTapped() {
-        
+        addNotesModel.deleteNote()
+        popController()
     }
     func shareTapped() {
         

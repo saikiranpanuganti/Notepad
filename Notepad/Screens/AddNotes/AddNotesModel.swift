@@ -16,7 +16,12 @@ class AddNotesModel {
         }
         return false
     }
-    
+    func deleteNote() {
+        if let note = note {
+            CoreDataManager.deleteNote(note: note)
+            refreshNotesData()
+        }
+    }
     func saveNote(message: String) {
         if updateNeeded {
             CoreDataManager.updateNote(message: message, id: note?.id ?? "")

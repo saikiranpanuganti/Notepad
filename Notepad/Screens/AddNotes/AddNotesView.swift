@@ -67,6 +67,7 @@ class AddNotesView: UIView {
         delegate?.backTapped()
     }
     @IBAction func deleteTapped() {
+        messageView.resignFirstResponder()
         delegate?.deleteTapped()
     }
     @IBAction func shareTapped() {
