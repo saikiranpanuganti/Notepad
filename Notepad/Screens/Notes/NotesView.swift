@@ -67,6 +67,9 @@ class NotesView: UIView {
         isEditingMode = !isEditingMode
         updateUI()
     }
+    @IBAction func textChanged(_ sender: UITextField) {
+        print(sender.text)
+    }
 }
 
 extension NotesView: UITableViewDataSource {

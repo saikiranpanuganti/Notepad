@@ -111,7 +111,23 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textChanged:" destination="22g-HH-6gm" eventType="editingChanged" id="6wY-F8-57p"/>
+                                        </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eud-wt-crB">
+                                        <rect key="frame" x="330" y="5" width="50" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="28o-Yx-zgn"/>
+                                            <constraint firstAttribute="width" constant="50" id="oU7-YR-Wys"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelSearchTapped:" destination="22g-HH-6gm" eventType="touchUpInside" id="k0J-xI-dUO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -119,6 +135,8 @@
                                     <constraint firstAttribute="trailing" secondItem="tjo-Af-skI" secondAttribute="trailing" constant="10" id="HhN-jb-RwT"/>
                                     <constraint firstAttribute="height" constant="40" id="R7o-6g-lSP"/>
                                     <constraint firstItem="6TM-tu-5PJ" firstAttribute="leading" secondItem="Yyw-Fm-ftc" secondAttribute="leading" constant="10" id="RV6-m1-dFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eud-wt-crB" secondAttribute="trailing" constant="20" id="fEt-eX-EeT"/>
+                                    <constraint firstItem="Eud-wt-crB" firstAttribute="centerY" secondItem="Yyw-Fm-ftc" secondAttribute="centerY" id="gNz-Aj-2tY"/>
                                     <constraint firstItem="tjo-Af-skI" firstAttribute="centerY" secondItem="6TM-tu-5PJ" secondAttribute="centerY" id="l46-R5-OTv"/>
                                     <constraint firstItem="6TM-tu-5PJ" firstAttribute="centerY" secondItem="Yyw-Fm-ftc" secondAttribute="centerY" id="lb6-EE-I6U"/>
                                 </constraints>
@@ -175,6 +193,7 @@
                         </constraints>
                         <connections>
                             <outlet property="addView" destination="Ljg-Ff-bXa" id="gdH-OI-VNH"/>
+                            <outlet property="cancelSearch" destination="Eud-wt-crB" id="8Ge-Sm-7tr"/>
                             <outlet property="navBarHeightConstraint" destination="spc-sm-PLV" id="mf2-vp-uti"/>
                             <outlet property="navBarView" destination="gxB-o4-Am5" id="pJk-Kv-k3f"/>
                             <outlet property="searchScope" destination="6TM-tu-5PJ" id="6DH-GN-5d7"/>
@@ -283,13 +302,31 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textChanged:" destination="KO2-ds-qdX" eventType="editingChanged" id="yQ4-51-54n"/>
+                                        </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpi-k1-HxY">
+                                        <rect key="frame" x="330" y="3.5" width="50" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Xpi-k1-HxY" secondAttribute="height" multiplier="23:15" id="Q00-P8-gYe"/>
+                                            <constraint firstAttribute="width" constant="50" id="osX-wh-HGa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="tintColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5wa-by-4LN"/>
                                     <constraint firstAttribute="trailing" secondItem="3kq-lf-AmY" secondAttribute="trailing" constant="10" id="8YO-mB-GvY"/>
+                                    <constraint firstItem="Xpi-k1-HxY" firstAttribute="centerY" secondItem="tha-0c-Zz3" secondAttribute="centerY" id="Hzz-2k-Igj"/>
                                     <constraint firstItem="aLA-HR-Oc8" firstAttribute="centerY" secondItem="tha-0c-Zz3" secondAttribute="centerY" id="drf-gH-eVN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xpi-k1-HxY" secondAttribute="trailing" constant="20" id="ecX-0O-Ynk"/>
                                     <constraint firstItem="aLA-HR-Oc8" firstAttribute="leading" secondItem="tha-0c-Zz3" secondAttribute="leading" constant="10" id="f0a-SE-JxM"/>
                                     <constraint firstItem="3kq-lf-AmY" firstAttribute="leading" secondItem="aLA-HR-Oc8" secondAttribute="trailing" constant="8" id="fUL-Cq-P4g"/>
                                     <constraint firstItem="3kq-lf-AmY" firstAttribute="centerY" secondItem="aLA-HR-Oc8" secondAttribute="centerY" id="gZh-TI-pFh"/>
