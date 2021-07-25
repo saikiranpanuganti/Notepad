@@ -24,6 +24,7 @@ class NotesView: UIView {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addView: UIView!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var cancelSearch: UIButton!
     
     weak var delegate: NotesViewDelegate?
     var isEditingMode: Bool = false
@@ -31,6 +32,8 @@ class NotesView: UIView {
     var folder: Folder?
     var pinnedNotes: [Note] = []
     var notes: [Note] = []
+    var isSearching: Bool = false
+    var searchArray: [Note] = []
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -42,6 +45,8 @@ class NotesView: UIView {
         let redPlaceholderText = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: Colors.shared.searchText])
         searchTextField.attributedPlaceholder = redPlaceholderText
         searchTextField.delegate = self
+        
+        cancelSearch.isHidden = true
         
         addView.layer.cornerRadius = 30
         
@@ -55,7 +60,15 @@ class NotesView: UIView {
     func updateUI() {
         tableView.reloadData()
     }
-    
+    func clearSearch() {
+        searchTextField.text = ""
+        cancelSearch.isHidden = true
+        isSearching = false
+    }
+    @IBAction func cancelSearchTapped(_ sender: UIButton) {
+        clearSearch()
+        updateUI()
+    }
     @IBAction func backTapped() {
         searchTextField.resignFirstResponder()
         delegate?.backTapped()
@@ -68,7 +81,21 @@ class NotesView: UIView {
         updateUI()
     }
     @IBAction func textChanged(_ sender: UITextField) {
-        print(sender.text)
+        if let text = sender.text, text.replacingOccurrences(of: " ", with: "") != "" {
+            cancelSearch.isHidden = false
+            isSearching = true
+            searchArray = []
+            for note in notes {
+                if let message = note.message, message.localizedCaseInsensitiveContains(text) {
+                    searchArray.append(note)
+                }
+            }
+            updateUI()
+        }else {
+            isSearching = false
+            clearSearch()
+            updateUI()
+        }
     }
 }
 
@@ -80,7 +107,11 @@ extension NotesView: UITableViewDataSource {
         if section == 0 {
             return pinnedNotes.count
         }else {
-            return notes.count
+            if isSearching {
+                return searchArray.count
+            }else {
+                return notes.count
+            }
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,7 +124,11 @@ extension NotesView: UITableViewDataSource {
         }else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
                 cell.delegate = self
-                cell.configureUI(note: notes[indexPath.row], pinned: false)
+                if isSearching {
+                    cell.configureUI(note: searchArray[indexPath.row], pinned: false)
+                }else {
+                    cell.configureUI(note: notes[indexPath.row], pinned: false)
+                }
                 return cell
             }
         }
@@ -111,7 +146,12 @@ extension NotesView: UITableViewDelegate {
             if indexPath.section == 0 {
                 delegate?.updateNote(note: pinnedNotes[indexPath.row])
             }else {
-                delegate?.updateNote(note: notes[indexPath.row])
+                if isSearching {
+                    clearSearch()
+                    delegate?.updateNote(note: searchArray[indexPath.row])
+                }else {
+                    delegate?.updateNote(note: notes[indexPath.row])
+                }
             }
         }
     }

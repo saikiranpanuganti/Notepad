@@ -318,6 +318,9 @@
                                             <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancelSearchTapped:" destination="KO2-ds-qdX" eventType="touchUpInside" id="kQH-c4-Zkp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.1058823529" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -392,6 +395,7 @@
                         </constraints>
                         <connections>
                             <outlet property="addView" destination="RgY-DQ-ZIj" id="aqu-K6-s0x"/>
+                            <outlet property="cancelSearch" destination="Xpi-k1-HxY" id="Sma-mm-yS5"/>
                             <outlet property="navBarHeightConstraint" destination="U87-Gx-jRS" id="eFW-Kv-9Vg"/>
                             <outlet property="navBarView" destination="f1D-qv-sLT" id="Q4F-GI-myH"/>
                             <outlet property="searchScope" destination="aLA-HR-Oc8" id="oN1-rb-QoI"/>

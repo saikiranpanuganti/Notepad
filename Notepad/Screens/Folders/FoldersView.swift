@@ -81,7 +81,6 @@ class FoldersView: UIView {
             }
             updateUI()
         }else {
-            isSearching = false
             clearSearch()
             updateUI()
         }
