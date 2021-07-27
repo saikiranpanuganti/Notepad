@@ -35,12 +35,12 @@ class AddNotesView: UIView {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-    func updateUI() {
-        if note != nil {
-            messageView.text = note?.message
-            dateLabel.text = note?.date?.convertToLongString()
-        }
-    }
+//    func updateUI() {
+//        if note != nil {
+//            messageView.text = note?.message
+//            dateLabel.text = note?.date?.convertToLongString()
+//        }
+//    }
     @objc func handleTap() {
         messageView.resignFirstResponder()
     }

@@ -28,6 +28,7 @@ class NotesView: UIView {
     var isEditingMode: Bool = false
     
     var folderName: String = ""
+    var notesData: [Note] = []
     
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -68,10 +69,11 @@ class NotesView: UIView {
 
 extension NotesView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return notesData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell {
+            cell.configureUI(note: notesData[indexPath.row])
             cell.delegate = self
             return cell
         }

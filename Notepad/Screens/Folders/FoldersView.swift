@@ -26,6 +26,7 @@ class FoldersView: UIView {
     var editingIndexPath: IndexPath?
     
     var folders: [String] = []
+    var notesCountArray: [Int] = []
         
     func setUpUI() {
         navBarHeightConstraint.constant = topSafeAreaHeight + 40
@@ -69,7 +70,7 @@ extension FoldersView: UITableViewDataSource {
 //        }
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell {
 //            cell.configureUI(mainCell: isMainCell, folder: folders[indexPath.row], notesCount: 0, indexPath: indexPath)
-            cell.configureUI(folder: folders[indexPath.row])
+            cell.configureUI(folder: folders[indexPath.row], notesCount: notesCountArray[indexPath.row])
             cell.delegate = self
             return cell
         }

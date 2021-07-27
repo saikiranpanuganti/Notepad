@@ -224,36 +224,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="odB-J1-I0u">
-                                        <rect key="frame" x="354" y="45.5" width="45" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-QD-ueF">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="45" id="loi-TO-6Cx"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                <state key="normal" title="Edit">
-                                                    <color key="titleColor" red="0.94509803920000002" green="0.24313725489999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="editTapped:" destination="KO2-ds-qdX" eventType="touchUpInside" id="F7o-48-v3R"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Aij-4c-mHv"/>
-                                        </constraints>
-                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="2MD-9g-dNU" firstAttribute="centerX" secondItem="f1D-qv-sLT" secondAttribute="centerX" id="CFD-IV-Cqu"/>
-                                    <constraint firstAttribute="trailing" secondItem="odB-J1-I0u" secondAttribute="trailing" constant="15" id="Ni9-N1-Udn"/>
                                     <constraint firstItem="2MD-9g-dNU" firstAttribute="centerY" secondItem="RzX-Zq-Jpp" secondAttribute="centerY" id="TbF-fZ-9Z2"/>
                                     <constraint firstAttribute="height" constant="88" id="U87-Gx-jRS"/>
                                     <constraint firstItem="RzX-Zq-Jpp" firstAttribute="leading" secondItem="f1D-qv-sLT" secondAttribute="leading" constant="10" id="X8r-us-JOQ"/>
-                                    <constraint firstItem="odB-J1-I0u" firstAttribute="centerY" secondItem="2MD-9g-dNU" secondAttribute="centerY" id="hwP-O0-Evk"/>
                                     <constraint firstAttribute="bottom" secondItem="RzX-Zq-Jpp" secondAttribute="bottom" constant="5" id="np9-6A-SG8"/>
                                 </constraints>
                             </view>

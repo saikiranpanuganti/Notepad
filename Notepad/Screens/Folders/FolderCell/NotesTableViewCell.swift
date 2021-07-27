@@ -49,8 +49,9 @@ class NotesTableViewCell: UITableViewCell {
         topView.addGestureRecognizer(panGesture)
     }
     
-    func configureUI(folder: String) {
+    func configureUI(folder: String, notesCount: Int) {
         folderName.text = folder
+        numberOfNotes.text = String(notesCount)
     }
 //    func configureUI(mainCell: Bool, folder: String, notesCount: Int, indexPath: IndexPath) {
 //        if mainCell {

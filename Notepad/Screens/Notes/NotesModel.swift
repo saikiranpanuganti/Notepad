@@ -9,4 +9,9 @@ import Foundation
 
 class NotesModel {
     var folderName: String = ""
+    var notes: [Note] = []
+    
+    func fetchNotes() {
+        notes = CoreDataManager.fetchNotesOfFolder(folder: folderName) ?? []
+    }
 }

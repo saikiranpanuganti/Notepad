@@ -8,5 +8,9 @@
 import Foundation
 
 class AddNotesModel {
+    var folderName: String = ""
     
+    func saveNote(message: String) {
+        CoreDataManager.addNoteToFolder(folder: folderName, message: message)
+    }
 }

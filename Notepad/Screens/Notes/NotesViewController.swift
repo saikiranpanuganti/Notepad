@@ -20,6 +20,10 @@ class NotesViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        notesModel.fetchNotes()
+        let data = notesModel.notes
+        notesView.notesData = data
         notesView.updateUI()
     }
 }
@@ -35,7 +39,8 @@ extension NotesViewController: NotesViewDelegate {
         }
     }
     func addTapped() {
-        if let controller = Controller.addNotes.getViewController() as? AddNotesViewController {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddNotesViewController") as? AddNotesViewController {
+            controller.addNotesModel.folderName = notesModel.folderName
             navigationController?.pushViewController(controller, animated: true)
         }
     }

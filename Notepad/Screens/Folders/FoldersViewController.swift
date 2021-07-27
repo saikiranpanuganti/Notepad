@@ -15,14 +15,15 @@ class FoldersViewController: UIViewController {
         super.viewDidLoad()
         foldersView.delegate = self
         foldersView.setUpUI()
-        foldersModel.getData()
-        let data = foldersModel.folders
-        foldersView.folders = data
-        foldersView.updateUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        foldersModel.getData()
+        let data = foldersModel.folders
+        let notesData = foldersModel.noteCountArray
+        foldersView.folders = data
+        foldersView.notesCountArray = notesData
+        foldersView.updateUI()
     }
     func showAlertController() {
         let alertController = UIAlertController(title: "Create a folder", message: "", preferredStyle: .alert)
